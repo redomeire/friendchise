@@ -8,7 +8,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<SuspenseWrapper />}>
+          <Route path="/" element={<Home />} />
+        </Route>
       </Routes>
     </div>
   )
@@ -16,7 +18,7 @@ function App() {
 
 const SuspenseWrapper = () => {
   return (
-    <React.Suspense>
+    <React.Suspense fallback={<h1>loading...</h1>}>
       <Outlet />
     </React.Suspense>
   )
