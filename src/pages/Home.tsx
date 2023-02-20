@@ -1,6 +1,13 @@
+import Jumbotron from "@/components/pages/home/Jumbotron";
+import Main from "@/components/pages/home/Main";
+import AppLayout from "@/components/partials/layout/AppLayout";
+
 const Home = () => {
     return ( 
-        <div>Home 2</div>
+        <AppLayout>
+            <Jumbotron/>
+            <Main/>
+        </AppLayout>
      );
 }
  

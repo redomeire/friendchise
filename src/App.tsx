@@ -1,8 +1,9 @@
 import React from "react";
 import { Route } from "react-router"
 import { Routes, Outlet } from "react-router-dom"
+import PageLoading from "@/components/loader/PageLoading";
 
-const Home = React.lazy(() => wait(1000).then(() => import('./pages/Home')))
+const Home = React.lazy(() => wait(1000).then(() => import('@/pages/Home')))
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
 
 const SuspenseWrapper = () => {
   return (
-    <React.Suspense fallback={<h1>loading...</h1>}>
+    <React.Suspense fallback={<PageLoading/>}>
       <Outlet />
     </React.Suspense>
   )
