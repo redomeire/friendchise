@@ -7,21 +7,23 @@ import Typography from "@/components/typography/Typography";
 // assets
 import Logo from "@/assets/logo_friendchise_green.svg";
 import modul from "@/components/styles/button.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LoginContext } from "@/context/LoginContext";
 
 const Navbar = () => {
     const [token] = useLocalStorage('session_id', '')
     const [scrolled, setScrolled] = useState(false);
+    const { setVisible } = useContext(LoginContext);
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 200)
+        if (window.scrollY > 50)
             setScrolled(true)
 
         else setScrolled(false);
     })
 
     return (
-        <nav className={`transition duration-200 fixed top-0 z-40 w-full flex items-center justify-between p-5 px-20 ${scrolled ? 'bg-white' : 'bg-transparent'}  `}>
+        <nav className={`transition duration-200 fixed top-0 z-20 w-full flex items-center justify-between p-5 px-20 ${scrolled ? 'bg-white' : 'bg-transparent'}  `}>
             <div className="flex items-center">
                 <a href="/">
                     <img src={Logo} alt="the movie db" className="md:w-[40px]" />
@@ -47,13 +49,14 @@ const Navbar = () => {
                             <Typography className="ml-3" thickness="bold">logout</Typography>
                         </Button>
                         :
-                        <a href="/login">
-                            <div className={modul.shadow_btn}>
-                                <Button className="text-sm min-w-[80px] font-semibold transition duration-400 bg-transparent hover:bg-green-600 hover:text-white">
-                                    Masuk / daftar
-                                </Button>
-                            </div>
-                        </a>
+                        <div onClick={() => { setVisible(prev => !prev) }} className="flex items-center">
+                            <Button className="text-sm font-semibold transition duration-400 border-primary border-[2px] text-primary min-w-[100px] mr-3">
+                                Daftar
+                            </Button>
+                            <Button className="text-sm min-w-[100px] font-semibold transition duration-400 bg-green-600 text-white">
+                                Masuk
+                            </Button>
+                        </div>
                 }
             </div>
         </nav>

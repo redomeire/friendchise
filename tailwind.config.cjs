@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'racing': '#000000',
         'primary-lightest': '#77D9AB',
         'primary-light': '#4ACC8F',
         'primary': '#1DBF73',
