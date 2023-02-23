@@ -22,7 +22,7 @@ const Jumbotron = () => {
                 <Input
                     beginningIcon={<AiOutlineSearch size={25} />}
                     type={'text'}
-                    className="w-full rounded-full focus:shadow-md"
+                    className="w-full"
                     placeholder="cari waralaba"
                     onChange={e => { setValue(e.target.value) }}
                 />

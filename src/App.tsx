@@ -6,6 +6,7 @@ import LoginCtx from "@/context/LoginContext";
 
 const Home = React.lazy(() => wait(1000).then(() => import('@/pages/Home')))
 const Waralaba = React.lazy(() => wait(1000).then(() => import('@/pages/Waralaba')))
+const Register = React.lazy(() => wait(1000).then(() => import('@/pages/Register')))
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route element={<SuspenseWrapper />}>
             <Route path="/" element={<Home />} />
             <Route path="/waralaba" element={<Waralaba />} />
+            <Route path="/register" element={<Register />} />
           </Route>
         </Routes>
       </LoginCtx>
