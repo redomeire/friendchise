@@ -19,7 +19,7 @@ const Button = ({
         <button
         type={type}
             onClick={onClick}
-            className={`rounded-full flex items-center justify-center p-3 hover:opacity-70 transition duration-200
+            className={`rounded-full flex items-center justify-center p-2 hover:opacity-70 transition duration-200
             ${outlined ? 'bg-transparent border-[1.5px]' : ''}
             ${className}
         `}

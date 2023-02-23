@@ -22,7 +22,8 @@ const LoginForm = () => {
 
     const { setVisible, visible } = useContext(LoginContext)
 
-    const handleLogin = async () => {
+    const handleLogin = async (e: { preventDefault: () => void }) => {
+        e.preventDefault()
         const { email, password } = forms
 
         try {
@@ -33,7 +34,8 @@ const LoginForm = () => {
             window.localStorage.setItem('token', result?.data.token)
 
             setTimeout(() => {
-                window.location.reload()
+                if(result) 
+                    window.location.reload()
             }, 1000);
         } catch (error) {
             console.error(error);
@@ -47,9 +49,9 @@ const LoginForm = () => {
                 <div className="w-full z-40 fixed flex top-0 left-0 right-0 bottom-0 items-center justify-center">
                     <div onClick={() => { setVisible(false) }} className=" bg-[#00000031] absolute top-0 left-0 right-0 bottom-0" />
                     <motion.form
-                        initial={{ y: -200 }}
-                        animate={{ y: 0 }}
-                        exit={{ y: -200 }}
+                        initial={{ y: -200, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -200, opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         onSubmit={handleLogin} className="bg-white p-7 rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 ">
                         <div className="flex items-center">

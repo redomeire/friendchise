@@ -5,6 +5,7 @@ import PageLoading from "@/components/loader/PageLoading";
 import LoginCtx from "@/context/LoginContext";
 
 const Home = React.lazy(() => wait(1000).then(() => import('@/pages/Home')))
+const Waralaba = React.lazy(() => wait(1000).then(() => import('@/pages/Waralaba')))
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route element={<SuspenseWrapper />}>
             <Route path="/" element={<Home />} />
+            <Route path="/waralaba" element={<Waralaba />} />
           </Route>
         </Routes>
       </LoginCtx>

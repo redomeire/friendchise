@@ -3,7 +3,7 @@ import { ChangeEventHandler, ReactNode } from "react";
 interface Props {
     placeholder?: string
     onChange?: ChangeEventHandler<HTMLInputElement>,
-    type: 'text' | 'email' | 'password',
+    type: 'text' | 'email' | 'password' | 'checkbox',
     beginningIcon?: ReactNode,
     endIcon?: ReactNode,
     className?: string,
