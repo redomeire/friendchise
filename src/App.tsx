@@ -3,6 +3,8 @@ import { Route } from "react-router"
 import { Routes, Outlet } from "react-router-dom"
 import PageLoading from "@/components/loader/PageLoading";
 import LoginCtx from "@/context/LoginContext";
+import PrivateRoute from "./components/routes/PrivateRoute";
+import AuthRoute from "./components/routes/AuthRoute";
 
 const Home = React.lazy(() => wait(1000).then(() => import('@/pages/Home')))
 const Waralaba = React.lazy(() => wait(1000).then(() => import('@/pages/Waralaba')))
@@ -15,8 +17,12 @@ function App() {
         <Routes>
           <Route element={<SuspenseWrapper />}>
             <Route path="/" element={<Home />} />
-            <Route path="/waralaba" element={<Waralaba />} />
-            <Route path="/register" element={<Register />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/waralaba" element={<Waralaba />} />
+            </Route>
+            <Route element={<AuthRoute />}>
+              <Route path="/register" element={<Register />} />
+            </Route>
           </Route>
         </Routes>
       </LoginCtx>
