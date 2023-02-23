@@ -1,0 +1,10 @@
+.shadow_btn {
+  transition: 400ms ease;
+}
+
+.shadow_btn:hover {
+  border-radius: 50px;
+  box-shadow: 11px 13px 80px -15px rgba(47,181,105,0.75);
+-webkit-box-shadow: 11px 13px 80px -15px rgba(47,181,105,0.75);
+-moz-box-shadow: 11px 13px 80px -15px rgba(47,181,105,0.75);
+}
