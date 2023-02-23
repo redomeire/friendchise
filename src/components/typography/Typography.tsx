@@ -4,17 +4,20 @@ interface Props {
     variant?: 'display1' | 'display2' | 'heading1' | 'heading2' | 'heading3' | 'paragraph1' | 'paragraph2',
     thickness?: 'normal' | 'bold' | 'extra-bold',
     className?: string,
-    children: React.ReactNode
+    children: React.ReactNode,
+    onClick?: React.MouseEventHandler<HTMLParagraphElement>
 }
 
 const Typography = ({ 
     variant, 
     thickness, 
     className, 
-    children 
+    children,
+    onClick
 }: Props) => {
     return (
         <p
+        onClick={onClick}
             className={`
                 ${  variant === 'display1' ? 'text-[80px]' : 
                     variant === 'display2' ? 'text-[70px]' :

@@ -6,16 +6,18 @@ import { useState } from "react";
 
 // animation
 import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const CardFranchise = () => {
     const [saved, setSaved] = useState(false);
+    const navigate = useNavigate()
 
     return (
         <div className="m-3 hover:shadow-md cursor-pointer transition duration-200 p-5 rounded-xl border border-gray-400 bg-white min-w-[350px] min-h-[300px] md:w-[300px]">
-            <div className="bg-cover bg-center min-h-[150px] w-full rounded-xl" style={{ backgroundImage: `url(${'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg'})` }} />
+            <div onClick={() => { navigate('/waralaba/1') }} className="bg-cover bg-center min-h-[150px] w-full rounded-xl hover:opacity-80 transition duration-200" style={{ backgroundImage: `url(${'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg'})` }} />
             <div className="flex items-start mt-3 justify-between">
                 <div>
-                    <Typography thickness="bold" className="text-lg">
+                    <Typography onClick={() => { navigate('/waralaba/1') }} thickness="bold" className="text-lg hover:underline">
                         Wisco Chocolate
                     </Typography>
                     <Typography thickness="bold" className="text-md text-gray-600">

@@ -1,11 +1,14 @@
 import { MouseEventHandler } from "react";
+import Snake from "@/assets/snake.gif";
+import ButtonLoader from "../loader/ButtonLoader";
 
 interface Props {
     children: React.ReactNode,
     className?: string,
     outlined?: boolean,
     onClick?: MouseEventHandler<HTMLButtonElement>,
-    type?: 'button' | 'submit'
+    type?: 'button' | 'submit',
+    loading?: boolean
 }
 
 const Button = ({ 
@@ -13,7 +16,8 @@ const Button = ({
     outlined, 
     onClick, 
     className,
-    type
+    type,
+    loading
 }: Props) => {
     return (
         <button
@@ -23,7 +27,7 @@ const Button = ({
             ${outlined ? 'bg-transparent border-[1.5px]' : ''}
             ${className}
         `}
-        >{children}</button>
+        >{loading ? <ButtonLoader/> : children}</button>
     );
 }
 
