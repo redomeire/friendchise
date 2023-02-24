@@ -52,7 +52,7 @@ const LoginForm = () => {
                         initial={{ y: -200, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -200, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0.5 }}
                         onSubmit={handleLogin} className="bg-white p-7 rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 ">
                         <div className="flex items-center">
                             <Button>

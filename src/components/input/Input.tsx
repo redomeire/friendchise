@@ -3,7 +3,7 @@ import { ChangeEventHandler, ReactNode } from "react";
 interface Props {
     placeholder?: string
     onChange?: ChangeEventHandler<HTMLInputElement>,
-    type: 'text' | 'email' | 'password' | 'checkbox',
+    type: 'text' | 'email' | 'password' | 'checkbox' | 'date' | 'radio',
     beginningIcon?: ReactNode,
     endIcon?: ReactNode,
     className?: string,
@@ -29,7 +29,7 @@ const Input = ({
                 placeholder={placeholder}
                 type={type}
                 name={name}
-                className={`rounded-full focus:shadow-md outline-none border-[1.5px] p-3 text-sm transition duration-200 ${beginningIcon !== undefined ? 'pl-10' : ''} ${endIcon !== undefined ? 'pr-10' : ''} ${className}`}
+                className={`rounded-full ${type !== 'radio' ? 'focus:shadow-md' : '' } outline-none border-[1.5px] p-3 text-sm transition duration-200 ${beginningIcon !== undefined ? 'pl-10' : ''} ${endIcon !== undefined ? 'pr-10' : ''} ${className}`}
             />
             <div className="absolute right-3">
                 {endIcon}
