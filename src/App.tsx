@@ -11,6 +11,7 @@ const Waralaba = React.lazy(() => wait(1000).then(() => import('@/pages/Waralaba
 const Register = React.lazy(() => wait(1000).then(() => import('@/pages/Register')))
 const DetailWaralaba = React.lazy(() => wait(1000).then(() => import('@/pages/DetailWaralaba')))
 const History = React.lazy(() => wait(1000).then(() => import('@/pages/History')))
+const Profile = React.lazy(() => wait(1000).then(() => import('@/pages/Profile')))
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route element={<SuspenseWrapper />}>
             <Route path="/" element={<Home />} />
             <Route element={<PrivateRoute />}>
+              <Route path="/profile" element={<Profile/>}/>
               <Route path="/waralaba" element={<Waralaba />} />
               <Route path="/history" element={<History />} />
               <Route path="/waralaba/:franchiseId" element={<DetailWaralaba />} />
