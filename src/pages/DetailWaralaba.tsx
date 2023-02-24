@@ -10,8 +10,13 @@ import { CiCoffeeCup } from "react-icons/ci";
 
 import { RiShoppingBasketLine } from "react-icons/ri";
 import AboutCompany from "@/feature/franchise/components/AboutCompany";
+import ChatDrawer from "@/feature/franchise/components/ChatDrawer";
+
+import { useState } from "react"
 
 const DetailWaralaba = () => {
+    const [visible, setVisible] = useState(false)
+
     const links = [
         {
             name: 'Waralaba',
@@ -89,10 +94,10 @@ const DetailWaralaba = () => {
                                 </Button>
                             </div>
                         </div>
-                        <AboutCompany/>
+                        <AboutCompany />
                     </div>
                     <div className="md:min-w-[330px] mt-5">
-                        <Button className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
+                        <Button onClick={() => { setVisible(true) }} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
                         <Button className="border-[1.5px] border-primary bg-primary w-full text-white mt-3">Daftar Waralaba</Button>
                         <div className="flex items-center justify-between mt-3">
                             <Button className="w-[47%] border-[1.5px] border-gray-500 text-gray-500 flex items-center">
@@ -107,6 +112,10 @@ const DetailWaralaba = () => {
                     </div>
                 </div>
             </main>
+            <ChatDrawer
+                visible={visible}
+                setVisible={setVisible}
+            />
         </AppLayout>
     );
 }
