@@ -42,7 +42,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center">
                     {
-                        token ?
+                        token && token !== 'undefined' ?
                             <ProfileAvatar openProfile={openProfile} setOpenProfile={setOpenProfile} />
                             :
                             <div className="flex items-center">

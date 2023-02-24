@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 const AuthRoute = () => {
     const [token] = useLocalStorage('token', '')
     
-    if (token) 
+    if (token && token !== 'undefined') 
         return <Navigate to="/" />
         
     return <Outlet />
