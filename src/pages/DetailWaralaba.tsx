@@ -13,9 +13,11 @@ import AboutCompany from "@/feature/franchise/components/AboutCompany";
 import ChatDrawer from "@/feature/franchise/components/ChatDrawer";
 
 import { useState } from "react"
+import PaymentForm from "@/feature/franchise/components/PaymentForm";
 
 const DetailWaralaba = () => {
     const [visible, setVisible] = useState(false)
+    const [visiblePayment, setVisiblePayment] = useState(false)
 
     const links = [
         {
@@ -51,7 +53,7 @@ const DetailWaralaba = () => {
                 </div>
                 <div className="flex justify-between items-start">
                     <div>
-                        <Typography className="text-3xl my-3" thickness="bold">
+                        <Typography className="text-3xl my-3 mt-10" thickness="bold">
                             Ropi: Roti Bikin Hepi
                         </Typography>
                         <Typography className="text-xl" thickness="bold">
@@ -61,12 +63,12 @@ const DetailWaralaba = () => {
                         <Typography thickness="bold" variant="heading3" className="mt-7">
                             Rp 8.976.500
                         </Typography>
-                        <Typography thickness="bold" className="my-7">
+                        <Typography thickness="bold" className="my-4">
                             Fasilitas
                         </Typography>
                         <div className="flex flex-wrap">
                             <div>
-                                <Button className="my-4 min-w-[100px]">
+                                <Button className="my-2 min-w-[100px]">
                                     <BiStore size={25} />
                                     <Typography className="ml-3">
                                         Booth
@@ -80,7 +82,7 @@ const DetailWaralaba = () => {
                                 </Button>
                             </div>
                             <div className="ml-5">
-                                <Button className="my-4 min-w-[100px]">
+                                <Button className="my-2 min-w-[100px]">
                                     <RiShoppingBasketLine size={25} />
                                     <Typography className="ml-3">
                                         Bahan Baku
@@ -96,9 +98,9 @@ const DetailWaralaba = () => {
                         </div>
                         <AboutCompany />
                     </div>
-                    <div className="md:min-w-[330px] mt-5">
+                    <div className="md:min-w-[330px] mt-10">
                         <Button onClick={() => { setVisible(true) }} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
-                        <Button className="border-[1.5px] border-primary bg-primary w-full text-white mt-3">Daftar Waralaba</Button>
+                        <Button onClick={() => { setVisiblePayment(true) }} className="border-[1.5px] border-primary bg-primary w-full text-white mt-3">Daftar Waralaba</Button>
                         <div className="flex items-center justify-between mt-3">
                             <Button className="w-[47%] border-[1.5px] border-gray-500 text-gray-500 flex items-center">
                                 <BsBookmark />
@@ -115,6 +117,10 @@ const DetailWaralaba = () => {
             <ChatDrawer
                 visible={visible}
                 setVisible={setVisible}
+            />
+            <PaymentForm
+                visiblePayment={visiblePayment}
+                setVisiblePayment={setVisiblePayment}
             />
         </AppLayout>
     );

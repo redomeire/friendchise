@@ -14,6 +14,7 @@ import { logout } from "@/feature/auth/service/logout";
 
 // animation
 import { AnimatePresence, motion } from "framer-motion";
+import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
     const [token] = useLocalStorage('token', '')
@@ -99,29 +100,30 @@ const ProfileAvatar = ({ openProfile, setOpenProfile }: { openProfile: boolean, 
                     openProfile &&
                     <>
                         <motion.div
-                            initial={{ y: 100, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            exit={{ y: 100, opacity: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{ y: -10, opacity: 0 }}
+                            animate={{ y: 5, opacity: 1 }}
+                            exit={{ y: -10, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                             className="absolute top-14 p-4 rounded-xl shadow-md bg-white min-w-[200px] z-50">
                             <a href="/profile">
-                                <Typography className="font-semibold text-sm mb-3">
+                                <Typography className="text-sm mb-3">
                                     Profil Saya
                                 </Typography>
                             </a>
                             <a href="/usage-agreement">
-                                <Typography className="font-semibold text-sm mb-3">
+                                <Typography className="text-sm mb-3">
                                     Syarat & Ketentuan
                                 </Typography>
                             </a>
                             <a href="/privacy-policy">
-                                <Typography className="font-semibold text-sm mb-3">
+                                <Typography className="text-sm mb-3">
                                     Kebijakan Privasi
                                 </Typography>
                             </a>
                             <hr className="border-[1px]" />
-                            <div onClick={handleLogout} className="w-fit">
-                                <Typography className="text-red-500 font-semibold text-sm mt-3 cursor-pointer w-fit">
+                            <div onClick={handleLogout} className="w-fit flex items-center mt-3 text-red-500">
+                                <FiLogOut/>
+                                <Typography className="font-semibold text-sm ml-2 cursor-pointer w-fit">
                                     Keluar
                                 </Typography>
                             </div>

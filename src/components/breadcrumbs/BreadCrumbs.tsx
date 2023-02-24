@@ -13,7 +13,7 @@ const BreadCrumbs = ({ links }: Link) => {
     const navigate = useNavigate()
 
     return (
-        <div className="w-full p-5 bg-gray-200 fixed top-20 flex items-center px-20">
+        <div className="w-full p-5 bg-gray-200 flex items-center px-20 z-10">
             {
                 links.map((item, index) => {
                     return (
