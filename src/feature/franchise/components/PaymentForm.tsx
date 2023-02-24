@@ -10,6 +10,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { payment } from "../utils/dummy";
 import StepOne from "./PaymentStep/StepOne";
+import StepThree from "./PaymentStep/StepThree";
 import StepTwo from "./PaymentStep/StepTwo";
 
 interface Props {
@@ -36,7 +37,7 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -200, opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-white rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 ">
+                        className="bg-white rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 md:max-w-[60vw] ">
 
                         <div className="p-7 bg-primary rounded-t-xl text-white flex items-center">
                             <BsArrowLeft />
@@ -45,9 +46,9 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
                                     payment.map((item, index) => {
                                         return (
                                             <>
-                                                <Button type="button" onClick={() => { setTab(item.tab) }} className={`  ${item.tab <= tab ? 'bg-white text-primary ' : 'border-white border-[1.5px] text-white'} ${index === 0 && 'ml-5'}`}>
+                                                <Button type="button" onClick={() => { setTab(item.tab) }} className={`  ${item.tab < tab ? 'bg-white text-primary ' : 'border-white border-[1.5px] text-white'} ${index === 0 && 'ml-5'}`}>
                                                     {
-                                                        item.tab <= tab &&
+                                                        item.tab < tab &&
                                                         <BsFillCheckCircleFill size={20} />
                                                     }
                                                     <Typography className="text-sm ml-2 font-semibold">
@@ -76,7 +77,12 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
                                             setTab={setTab}
                                         />
                                         :
-                                        <></>
+                                        tab === 3 ?
+                                            <StepThree
+                                                setTab={setTab}
+                                            />
+                                            :
+                                            <></>
                             }
                         </div>
                     </motion.form>

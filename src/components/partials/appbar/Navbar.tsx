@@ -21,6 +21,21 @@ const Navbar = () => {
     const [openProfile, setOpenProfile] = useState(false)
     const { setVisible } = useContext(LoginContext);
 
+    const navbarDatas = [
+        {
+            name: 'Waralaba',
+            url: '/waralaba'
+        },
+        {
+            name: 'Riwayat',
+            url: '/history'
+        },
+        {
+            name: 'Disimpan',
+            url: '/saved'
+        }
+    ]
+
     return (
         <>
             <nav className={` transition duration-200 fixed top-0 z-20 w-full flex items-center justify-between p-5 px-20 bg-white ${style.nav} `}>
@@ -29,16 +44,17 @@ const Navbar = () => {
                         <img src={Logo} alt="the movie db" className="md:w-[40px]" />
                     </a>
                     <ul className="flex items-center ml-10">
-                        <a href="/waralaba">
-                            <li className="mx-5 text-md font-[500] border-b-[2px] border-b-transparent hover:border-b-black transition duration-200">
-                                Waralaba
-                            </li>
-                        </a>
-                        <a href="/history">
-                            <li className="mx-5 text-md font-[500] border-b-[2px] border-b-transparent hover:border-b-black transition duration-200">
-                                Riwayat
-                            </li>
-                        </a>
+                        {
+                            navbarDatas.map((item, index) => {
+                                return (
+                                    <a key={index} href={item.url}>
+                                        <li className={`mx-5 text-md font-[500] border-b-[2px] border-b-transparent hover:border-b-black transition duration-200 ${window.location.pathname === item.url ? 'font-semibold text-primary-darker' : ''}`}>
+                                            {item.name}
+                                        </li>
+                                    </a>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
                 <div className="flex items-center">
@@ -122,7 +138,7 @@ const ProfileAvatar = ({ openProfile, setOpenProfile }: { openProfile: boolean, 
                             </a>
                             <hr className="border-[1px]" />
                             <div onClick={handleLogout} className="w-fit flex items-center mt-3 text-red-500">
-                                <FiLogOut/>
+                                <FiLogOut />
                                 <Typography className="font-semibold text-sm ml-2 cursor-pointer w-fit">
                                     Keluar
                                 </Typography>
