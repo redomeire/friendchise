@@ -43,6 +43,7 @@ const Profile = () => {
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Nama Lengkap</Typography>
                             <Input
+                                disabled
                                 type="text"
                                 placeholder="Masukkan nama lengkap"
                                 className="rounded-full w-full"
@@ -51,6 +52,7 @@ const Profile = () => {
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Alamat</Typography>
                             <Input
+                                disabled
                                 type="text"
                                 placeholder="Masukkan alamat"
                                 className="rounded-full w-full"
@@ -59,6 +61,7 @@ const Profile = () => {
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Tanggal Lahir</Typography>
                             <Input
+                                disabled
                                 beginningIcon={<BsCalendar3 />}
                                 type="date"
                                 placeholder="Masukkan tanggal lahir"
@@ -70,6 +73,7 @@ const Profile = () => {
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Jenis Kelamin</Typography>
                             <Input
+                                disabled
                                 type="text"
                                 placeholder="Masukkan jenis kelamin"
                                 className="rounded-full w-full"
@@ -78,6 +82,7 @@ const Profile = () => {
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Pekerjaan</Typography>
                             <Input
+                                disabled
                                 type="text"
                                 placeholder="Masukkan pekerjaan"
                                 className="rounded-full w-full"
@@ -86,6 +91,7 @@ const Profile = () => {
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Pekerjaan</Typography>
                             <Input
+                                disabled
                                 type="text"
                                 placeholder="Masukkan pekerjaan"
                                 className="rounded-full w-full"

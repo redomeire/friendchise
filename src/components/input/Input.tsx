@@ -7,7 +7,8 @@ interface Props {
     beginningIcon?: ReactNode,
     endIcon?: ReactNode,
     className?: string,
-    name?: string
+    name?: string,
+    disabled?: boolean
 }
 
 const Input = ({ 
@@ -17,7 +18,8 @@ const Input = ({
     beginningIcon, 
     endIcon, 
     className,
-    name
+    name,
+    disabled
 }: Props) => {
     return (
         <div className="relative flex items-center w-full">
@@ -29,7 +31,8 @@ const Input = ({
                 placeholder={placeholder}
                 type={type}
                 name={name}
-                className={`rounded-full ${type !== 'radio' ? 'focus:shadow-md' : '' } outline-none border-[1.5px] p-3 text-sm transition duration-200 ${beginningIcon !== undefined ? 'pl-10' : ''} ${endIcon !== undefined ? 'pr-10' : ''} ${className}`}
+                disabled={disabled}
+                className={`rounded-full disabled:cursor-not-allowed ${type !== 'radio' ? 'focus:shadow-md' : '' } outline-none border-[1.5px] p-3 text-sm transition duration-200 ${beginningIcon !== undefined ? 'pl-10' : ''} ${endIcon !== undefined ? 'pr-10' : ''} ${className}`}
             />
             <div className="absolute right-3">
                 {endIcon}

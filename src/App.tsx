@@ -12,6 +12,7 @@ const Register = React.lazy(() => wait(1000).then(() => import('@/pages/Register
 const DetailWaralaba = React.lazy(() => wait(1000).then(() => import('@/pages/DetailWaralaba')))
 const History = React.lazy(() => wait(1000).then(() => import('@/pages/History')))
 const Profile = React.lazy(() => wait(1000).then(() => import('@/pages/Profile')))
+const EditProfile = React.lazy(() => wait(1000).then(() => import('@/pages/EditProfile')))
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route element={<PrivateRoute />}>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/waralaba" element={<Waralaba />} />
               <Route path="/history" element={<History />} />
               <Route path="/waralaba/:franchiseId" element={<DetailWaralaba />} />
