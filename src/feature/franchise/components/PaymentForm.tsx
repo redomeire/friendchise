@@ -37,11 +37,11 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -200, opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        className="bg-white rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 md:max-w-[60vw] ">
+                        className="bg-white rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 md:max-w-[60vw] w-[90%]">
 
                         <div className="p-7 bg-primary rounded-t-xl text-white flex items-center">
-                            <BsArrowLeft />
-                            <div className="flex items-center">
+                            <BsArrowLeft className="md:w-[25px] w-[50px]" />
+                            <div className="flex items-center overflow-auto">
                                 {
                                     payment.map((item, index) => {
                                         return (
@@ -51,7 +51,7 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
                                                         item.tab < tab &&
                                                         <BsFillCheckCircleFill size={20} />
                                                     }
-                                                    <Typography className="text-sm ml-2 font-semibold">
+                                                    <Typography className="text-sm ml-2 font-semibold whitespace-nowrap">
                                                         {item.name}
                                                     </Typography>
                                                 </Button>
@@ -66,7 +66,7 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
 
                             </div>
                         </div>
-                        <div className="p-10 max-h-[70vh] overflow-auto">
+                        <div className="md:p-10 p-5 max-h-[70vh] overflow-auto">
                             {
                                 tab === 1 ?
                                     <StepOne

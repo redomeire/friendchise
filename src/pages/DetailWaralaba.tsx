@@ -43,11 +43,11 @@ const DetailWaralaba = () => {
             <BreadCrumbs
                 links={links}
             />
-            <main className="px-20 mt-10">
-                <div className="flex items-stretch justify-between">
-                    <div className="md:w-[70%] bg-cover bg-center min-h-[400px] rounded-xl" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
-                    <div className="md:w-[30%] flex flex-col justify-between md:ml-5">
-                        <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl mb-5" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
+            <main className="md:px-20 px-5 mt-10">
+                <div className="flex items-stretch justify-between md:flex-row flex-col">
+                    <div className="md:w-[70%] w-full bg-cover bg-center min-h-[400px] rounded-xl" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
+                    <div className="md:w-[30%] flex md:flex-col flex-row justify-between md:ml-5 md:mt-0 mt-5">
+                        <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl md:mb-5 md:mr-0 mr-5" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
                         <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
                     </div>
                 </div>
@@ -81,7 +81,7 @@ const DetailWaralaba = () => {
                                     </Typography>
                                 </Button>
                             </div>
-                            <div className="ml-5">
+                            <div className="md:ml-5">
                                 <Button className="my-2 min-w-[100px]">
                                     <RiShoppingBasketLine size={25} />
                                     <Typography className="ml-3">
@@ -98,7 +98,7 @@ const DetailWaralaba = () => {
                         </div>
                         <AboutCompany />
                     </div>
-                    <div className="md:min-w-[330px] mt-10">
+                    <div className="md:min-w-[330px] mt-10 md:sticky md:top-24 fixed bottom-0 bg-white left-0 right-0 md:p-5 p-7 md:pb-7 md:rounded-xl pb-10 shadow">
                         <Button onClick={() => { setVisible(true) }} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
                         <Button onClick={() => { setVisiblePayment(true) }} className="border-[1.5px] border-primary bg-primary w-full text-white mt-3">Daftar Waralaba</Button>
                         <div className="flex items-center justify-between mt-3">
