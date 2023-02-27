@@ -4,7 +4,7 @@ import { BiChevronUp } from "react-icons/bi";
 
 const AboutCompany = () => {
     return (
-        <div className="rounded-xl border border-black p-7 mt-10 w-[90%]">
+        <div className="rounded-xl border border-black p-7 mt-10 md:w-[90%] w-full">
             <Typography thickness="bold" className="text-xl">Tentang Perusahaan</Typography>
             <div className="flex items-center my-5">
                 <div className="rounded-full w-[50px] h-[50px] bg-cover bg-center" style={{ backgroundImage: `url(https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg)` }} />
