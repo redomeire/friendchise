@@ -43,7 +43,7 @@ const DetailWaralaba = () => {
             <BreadCrumbs
                 links={links}
             />
-            <main className="px-20 mt-20">
+            <main className="px-20 mt-10">
                 <div className="flex items-stretch justify-between">
                     <div className="md:w-[70%] bg-cover bg-center min-h-[400px] rounded-xl" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
                     <div className="md:w-[30%] flex flex-col justify-between md:ml-5">

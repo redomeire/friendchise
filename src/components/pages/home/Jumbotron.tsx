@@ -11,16 +11,16 @@ const Jumbotron = () => {
     const [value, setValue] = React.useState('');
 
     return (
-        <div className="mx-auto px-20 p-5 md:w-[65%] text-center mt-10 min-h-[60vh]">
-            <Typography variant="heading3" className="capitalize leading-[50px]" thickness="bold">
+        <div className="mx-auto md:px-20 px-8 p-5 md:w-[65%] text-center mt-10 min-h-[60vh]">
+            <Typography className="capitalize leading-[50px] md:text-[40px] text-[32px]" thickness="bold">
                 mulai bisnis anda dengan cepat dan mudah
             </Typography>
             <p className="text-md text-center mt-5">
                 Memulai bisnis dengan manajemen yang sudah teruji. Didukung penuh oleh partner profesional dengan modal terjangkau
             </p>
-            <form className="mt-10 w-full flex items-center">
+            <form className="mt-10 w-full flex items-center md:flex-row flex-col">
                 <Input
-                    beginningIcon={<AiOutlineSearch size={25} />}
+                    beginningIcon={<AiOutlineSearch size={20} />}
                     type={'text'}
                     className="w-full"
                     placeholder="cari waralaba"
@@ -28,7 +28,7 @@ const Jumbotron = () => {
                 />
                 <Button 
                 onClick={() => { navigate(`/search?q=${value}`) }}
-                className="ml-5 bg-green-600 min-w-[150px] font-semibold text-white">Cari</Button>
+                className="md:ml-5 bg-green-600 md:min-w-[150px] font-semibold text-white md:mt-0 mt-5 min-w-full">Cari</Button>
             </form>
         </div>
     );

@@ -6,16 +6,11 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsArrowLeft } from "react-icons/bs";
 
 const RegisterForm = () => {
-    const [passwordVisible, setPasswordVisible] = useState(false)
+    const [passwordVisible1, setPasswordVisible1] = useState(false)
+    const [passwordVisible2, setPasswordVisible2] = useState(false)
 
     return (
-        <div className="md:w-[40%]">
-            <div className="flex items-center mb-10">
-                <BsArrowLeft size={23} />
-                <Typography className="ml-5 text-2xl" thickness="bold">
-                    Daftar
-                </Typography>
-            </div>
+        <div className="md:w-[40%] w-full">
             <form>
                 <div className="my-5">
                     <Typography className="text-[15px]" thickness="bold">
@@ -57,11 +52,11 @@ const RegisterForm = () => {
                             placeholder="Minimal 8 karakter"
                             className="mt-5 w-full rounded-full"
                             endIcon={
-                                passwordVisible ?
+                                passwordVisible1 ?
                                     <AiOutlineEye
                                         className="mt-4"
                                         onClick={() => {
-                                            setPasswordVisible(prev => !prev)
+                                            setPasswordVisible1(prev => !prev)
                                         }}
                                         size={25}
                                     />
@@ -69,7 +64,7 @@ const RegisterForm = () => {
                                     <AiOutlineEyeInvisible
                                         className="mt-4"
                                         onClick={() => {
-                                            setPasswordVisible(prev => !prev)
+                                            setPasswordVisible1(prev => !prev)
                                         }}
                                         size={25}
                                     />
@@ -87,11 +82,11 @@ const RegisterForm = () => {
                             placeholder="Masukkan kembali password"
                             className="mt-5 w-full rounded-full"
                             endIcon={
-                                passwordVisible ?
+                                passwordVisible2 ?
                                     <AiOutlineEye
                                         className="mt-4"
                                         onClick={() => {
-                                            setPasswordVisible(prev => !prev)
+                                            setPasswordVisible2(prev => !prev)
                                         }}
                                         size={25}
                                     />
@@ -99,7 +94,7 @@ const RegisterForm = () => {
                                     <AiOutlineEyeInvisible
                                         className="mt-4"
                                         onClick={() => {
-                                            setPasswordVisible(prev => !prev)
+                                            setPasswordVisible2(prev => !prev)
                                         }}
                                         size={25}
                                     />

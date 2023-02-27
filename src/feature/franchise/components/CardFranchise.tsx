@@ -13,7 +13,7 @@ const CardFranchise = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="m-3 hover:shadow-md cursor-pointer transition duration-200 p-5 rounded-xl border border-gray-400 bg-white min-w-[350px] min-h-[300px] md:w-[300px]">
+        <div className="md:mx-3 md:mb-7 mb-3 hover:shadow-md cursor-pointer transition duration-200 p-5 rounded-xl border border-gray-400 bg-white md:min-w-[350px] min-w-[250px] min-h-[300px] md:w-[300px] w-full">
             <div onClick={() => { navigate('/waralaba/1') }} className="bg-cover bg-center min-h-[150px] w-full rounded-xl hover:opacity-80 transition duration-200" style={{ backgroundImage: `url(${'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg'})` }} />
             <div className="flex items-start mt-3 justify-between">
                 <div>
