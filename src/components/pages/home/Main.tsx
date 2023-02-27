@@ -5,7 +5,7 @@ import Home3 from "@/assets/home-3.png"
 
 const Main = () => {
     return ( 
-        <main className="p-10 md:px-40 px-10 bg-primary mt-20 w-full text-white">
+        <main className="p-10 pb-20 md:px-40 px-10 bg-primary mt-20 w-full text-white">
             <Typography className="text-center md:text-3xl text-2xl font-semibold capitalize md:w-[50%] mx-auto leading-10">portal kemitraan waralaba terbaik untuk anda</Typography>
             <div className="flex items-center md:flex-row flex-col-reverse justify-between mt-20">
                 <div className="md:w-[50%]">
