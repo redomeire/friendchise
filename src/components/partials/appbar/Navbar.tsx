@@ -15,10 +15,12 @@ import { logout } from "@/feature/auth/service/logout";
 // animation
 import { AnimatePresence, motion } from "framer-motion";
 import { FiLogOut } from "react-icons/fi";
+import { FaHamburger } from "react-icons/fa";
 
 const Navbar = () => {
     const [token] = useLocalStorage('token', '')
     const [openProfile, setOpenProfile] = useState(false)
+    const [navbarResponsive, setNavbarResponsive] = useState(false);
     const { setVisible } = useContext(LoginContext);
 
     const navbarDatas = [
@@ -38,17 +40,29 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={` transition duration-200 fixed top-0 z-20 w-full flex items-center justify-between p-5 px-20 bg-white ${style.nav} `}>
-                <div className="flex items-center">
-                    <a href="/">
-                        <img src={Logo} alt="the movie db" className="md:w-[40px]" />
-                    </a>
-                    <ul className="flex items-center ml-10">
+            <nav className={` transition duration-200 fixed top-0 z-20 w-full flex items-center justify-between p-5 md:px-20 bg-white ${style.nav} md:flex-row flex-col `}>
+                <div className="flex md:items-center md:flex-row flex-col md:w-fit w-full">
+                    <div className="flex items-center justify-between">
+                        <a href="/">
+                            <div className="flex items-center">
+                                <img src={Logo} alt="the movie db" className="w-[40px]" />
+                                <Typography className="ml-5 text-2xl md:hidden" thickness="bold">
+                                    FriendChise
+                                </Typography>
+                            </div>
+                        </a>
+                        <Button onClick={() => { setNavbarResponsive(prev => !prev) }} className="md:hidden">
+                            <FaHamburger
+                                size={20}
+                            />
+                        </Button>
+                    </div>
+                    <ul className={`md:flex items-center md:flex-row flex-col md:ml-10 mt-5 md:mt-0 w-full ${navbarResponsive ? 'flex' : 'hidden'}`}>
                         {
                             navbarDatas.map((item, index) => {
                                 return (
-                                    <a key={index} href={item.url}>
-                                        <li className={`mx-5 text-md font-[500] border-b-[2px] border-b-transparent hover:border-b-black transition duration-200 ${window.location.pathname === item.url ? 'font-semibold text-primary-darker' : ''}`}>
+                                    <a key={index} href={item.url} className="w-full mx-5 md:border-b-0 border-b py-3 md:py-0">
+                                        <li className={`md:text-base text-sm font-[500] border-b-[2px] border-b-transparent md:hover:border-b-black transition duration-200 ${window.location.pathname === item.url ? 'font-semibold text-primary-darker' : ''}`}>
                                             {item.name}
                                         </li>
                                     </a>
@@ -57,18 +71,18 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <div className="flex items-center">
+                <div className={`md:flex items-center md:w-fit w-full ${navbarResponsive ? 'flex' :  'hidden'}`}>
                     {
                         token && token !== 'undefined' ?
                             <ProfileAvatar openProfile={openProfile} setOpenProfile={setOpenProfile} />
                             :
-                            <div className="flex items-center">
-                                <Link to="/register">
-                                    <Button className="text-sm font-semibold transition duration-400 border-primary border-[2px] text-primary min-w-[100px] mr-3">
+                            <div className="flex items-center md:flex-row flex-col md:w-fit w-full">
+                                <Link to="/register" className="md:w-fit w-full">
+                                    <Button className="text-sm font-semibold transition duration-400 border-primary border-[2px] text-primary min-w-[100px] md:my-0 my-3 w-full">
                                         Daftar
                                     </Button>
                                 </Link>
-                                <Button onClick={() => { setVisible(prev => !prev) }} className="text-sm min-w-[100px] font-semibold transition duration-400 bg-primary border-primary border-[2px] text-white">
+                                <Button onClick={() => { setVisible(prev => !prev) }} className="md:ml-3 text-sm min-w-[100px] font-semibold transition duration-400 bg-primary border-primary border-[2px] text-white md:w-fit w-full">
                                     Masuk
                                 </Button>
                             </div>
@@ -97,7 +111,7 @@ const ProfileAvatar = ({ openProfile, setOpenProfile }: { openProfile: boolean, 
     }
 
     return (
-        <div className="cursor-pointer flex items-center relative">
+        <div className="cursor-pointer flex items-center relative md:mt-0 mt-5">
             {
                 openProfile &&
                 <div onClick={() => { setOpenProfile(false) }} className="z-30 fixed top-0 left-0 right-0 bottom-0" />

@@ -13,6 +13,7 @@ const DetailWaralaba = React.lazy(() => wait(1000).then(() => import('@/pages/De
 const History = React.lazy(() => wait(1000).then(() => import('@/pages/History')))
 const Profile = React.lazy(() => wait(1000).then(() => import('@/pages/Profile')))
 const EditProfile = React.lazy(() => wait(1000).then(() => import('@/pages/EditProfile')))
+const Disimpan = React.lazy(() => wait(1000).then(() => import('@/pages/Disimpan')))
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/waralaba" element={<Waralaba />} />
               <Route path="/history" element={<History />} />
+              <Route path="/saved" element={<Disimpan />} />
               <Route path="/waralaba/:franchiseId" element={<DetailWaralaba />} />
             </Route>
             <Route element={<AuthRoute />}>
