@@ -28,7 +28,7 @@ const Jumbotron = () => {
                 />
                 <Button 
                 onClick={() => { navigate(`/search?q=${value}`) }}
-                className="md:ml-5 bg-green-600 md:min-w-[150px] font-semibold text-white md:mt-0 mt-5 min-w-full">Cari</Button>
+                className="md:ml-5 bg-primary md:min-w-[150px] font-semibold text-white md:mt-0 mt-5 min-w-full">Cari</Button>
             </form>
         </div>
     );
