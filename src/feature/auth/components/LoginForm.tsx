@@ -12,6 +12,7 @@ import { login } from "../service/login";
 import { LoginContext } from "@/context/LoginContext";
 
 import { AnimatePresence, motion } from "framer-motion";
+import axios from "axios";
 
 const LoginForm = () => {
     const [passwordVisible, setPasswordVisible] = useState(false)
@@ -21,13 +22,19 @@ const LoginForm = () => {
     })
 
     const { setVisible, visible } = useContext(LoginContext)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleLogin = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
         const { email, password } = forms
+        setIsLoading(true)
 
         try {
-            const result = await login(email, password)
+            const result = await axios.post('https://reqres.in/api/login', {
+                email,
+                password
+            })
+
 
             console.log(result);
 
@@ -39,6 +46,7 @@ const LoginForm = () => {
             }, 1000);
         } catch (error) {
             console.error(error);
+            setIsLoading(false)
         }
     }
 
@@ -111,6 +119,7 @@ const LoginForm = () => {
                             }
                         />
                         <Button
+                        loading={isLoading}
                             type="submit"
                             className="w-full bg-primary text-white mt-7"
                         >Masuk</Button>
