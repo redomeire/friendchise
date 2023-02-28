@@ -4,14 +4,40 @@ import Typography from "@/components/typography/Typography";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsArrowLeft } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { register } from "../service/register";
 
 const RegisterForm = () => {
     const [passwordVisible1, setPasswordVisible1] = useState(false)
     const [passwordVisible2, setPasswordVisible2] = useState(false)
+    const [forms, setForms] = useState({
+        name: '',
+        username: '',
+        phone: '',
+        email: '',
+        password: '',
+        repeat_password: ''
+    })
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const handleRegister = async (e: { preventDefault: () => void }) => {
+        e.preventDefault()
+        setIsLoading(true)
+
+        try {
+            const result = await register(forms)
+
+            console.log(result);
+        } catch (error) {
+            setIsLoading(false)
+            console.error(error)
+        }
+    }
 
     return (
         <div className="md:w-[40%] w-full">
-            <form>
+            <form onSubmit={handleRegister}>
                 <div className="my-5">
                     <Typography className="text-[15px]" thickness="bold">
                         Nama Lengkap
@@ -20,6 +46,28 @@ const RegisterForm = () => {
                         type="text"
                         placeholder="Masukkan nama lengkap sesuai identitas"
                         className="mt-5 w-full rounded-full"
+                        onChange={(e) => {
+                            setForms(prev => {
+                                return { ...prev, name: e.target.value }
+                            })
+                        }}
+                        required
+                    />
+                </div>
+                <div className="my-5">
+                    <Typography className="text-[15px]" thickness="bold">
+                        Username
+                    </Typography>
+                    <Input
+                        type="text"
+                        placeholder="Masukkan nama lengkap sesuai identitas"
+                        className="mt-5 w-full rounded-full"
+                        onChange={(e) => {
+                            setForms(prev => {
+                                return { ...prev, username: e.target.value }
+                            })
+                        }}
+                        required
                     />
                 </div>
                 <div className="my-5">
@@ -30,6 +78,12 @@ const RegisterForm = () => {
                         type="text"
                         placeholder="Isi dengan nomor handphone aktif"
                         className="mt-5 w-full rounded-full"
+                        onChange={(e) => {
+                            setForms(prev => {
+                                return { ...prev, phone: e.target.value }
+                            })
+                        }}
+                        required
                     />
                 </div>
                 <div className="my-5">
@@ -40,6 +94,12 @@ const RegisterForm = () => {
                         type="email"
                         placeholder="Masukkan email"
                         className="mt-5 w-full rounded-full"
+                        onChange={(e) => {
+                            setForms(prev => {
+                                return { ...prev, email: e.target.value }
+                            })
+                        }}
+                        required
                     />
                 </div>
                 <div className="my-5">
@@ -48,9 +108,15 @@ const RegisterForm = () => {
                     </Typography>
                     <div className="w-">
                         <Input
-                            type="password"
+                            type={passwordVisible1 ? 'text' : 'password'}
                             placeholder="Minimal 8 karakter"
                             className="mt-5 w-full rounded-full"
+                            onChange={(e) => {
+                                setForms(prev => {
+                                    return { ...prev, password: e.target.value }
+                                })
+                            }}
+                            required
                             endIcon={
                                 passwordVisible1 ?
                                     <AiOutlineEye
@@ -78,9 +144,15 @@ const RegisterForm = () => {
                     </Typography>
                     <div className="w-">
                         <Input
-                            type="password"
+                            type={passwordVisible2 ? 'text' : 'password'}
                             placeholder="Masukkan kembali password"
                             className="mt-5 w-full rounded-full"
+                            onChange={(e) => {
+                                setForms(prev => {
+                                    return { ...prev, repeat_password: e.target.value }
+                                })
+                            }}
+                            required
                             endIcon={
                                 passwordVisible2 ?
                                     <AiOutlineEye
@@ -103,7 +175,9 @@ const RegisterForm = () => {
                     </div>
                 </div>
                 <div className="mt-10 w-full">
-                    <Button className="w-full bg-primary text-white font-semibold p-3">Daftar</Button>
+                    <Button
+                    loading={isLoading}
+                    className="w-full bg-primary text-white font-semibold p-3">Daftar</Button>
                 </div>
             </form>
         </div>

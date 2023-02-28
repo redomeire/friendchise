@@ -16,6 +16,7 @@ import { logout } from "@/feature/auth/service/logout";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiLogOut } from "react-icons/fi";
 import { FaHamburger } from "react-icons/fa";
+import { ProfileContext } from "@/context/ProfileContext";
 
 const Navbar = () => {
     const [token] = useLocalStorage('token', '')
@@ -71,7 +72,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <div className={`md:flex items-center md:w-fit w-full ${navbarResponsive ? 'flex' :  'hidden'}`}>
+                <div className={`md:flex items-center md:w-fit w-full ${navbarResponsive ? 'flex' : 'hidden'}`}>
                     {
                         token && token !== 'undefined' ?
                             <ProfileAvatar openProfile={openProfile} setOpenProfile={setOpenProfile} />
@@ -95,11 +96,13 @@ const Navbar = () => {
 
 const ProfileAvatar = ({ openProfile, setOpenProfile }: { openProfile: boolean, setOpenProfile: Function }) => {
     const [token] = useLocalStorage('token', '')
+    const { user } = useContext(ProfileContext);
     const handleLogout = async () => {
         try {
-            // const result = await logout(token);
+            const result = await logout(token.token);
 
             window.localStorage.removeItem('token');
+            window.localStorage.removeItem('profile');
 
             setTimeout(() => {
                 window.location.reload()
@@ -116,10 +119,20 @@ const ProfileAvatar = ({ openProfile, setOpenProfile }: { openProfile: boolean, 
                 openProfile &&
                 <div onClick={() => { setOpenProfile(false) }} className="z-30 fixed top-0 left-0 right-0 bottom-0" />
             }
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80" className="w-[40px] h-[40px] rounded-full" />
+            {
+                user.profile_img ?
+                    <img src={user.profile_img} className="w-[40px] h-[40px] rounded-full" />
+                    :
+                    <Button onClick={() => { setOpenProfile(true) }} className="bg-primary w-[40px] h-[40px] text-white">
+                        {
+                            user.username &&
+                            <Typography className="font-semibold">{user.username[0]?.toUpperCase()}</Typography>
+                        }
+                    </Button>
+            }
             <div onClick={() => { setOpenProfile(!openProfile) }}>
                 <Typography className="ml-3 font-semibold text-sm">
-                    Redomeire
+                    {user.username}
                 </Typography>
             </div>
             <Button>
