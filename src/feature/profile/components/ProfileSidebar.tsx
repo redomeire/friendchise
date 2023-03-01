@@ -13,7 +13,7 @@ const ProfileSidebar = () => {
             <div className="profile-pic flex flex-col justify-center items-center m-5 ">
                 {
                     user.profile_img ?
-                        <div className="bg-cover bg-center rounded-full w-[120px] h-[120px]" style={{ backgroundImage: `url(${'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg'})` }} />
+                        <div className="bg-cover bg-center rounded-full w-[120px] h-[120px]" style={{ backgroundImage: `url(${user.profile_img})` }} />
                         :
                         <Button className="bg-primary w-[100px] h-[100px] md:text-4xl text-white">
                             {
@@ -23,7 +23,7 @@ const ProfileSidebar = () => {
                         </Button>
                 }
                 <Typography thickness="bold" className="text-lg mt-5">
-                    Redomeire
+                    {user.username}
                 </Typography>
             </div>
             <div>

@@ -8,6 +8,7 @@ const user = {
     job: '',
     name: '',
     phone_number: '',
+    bio: ''
 }
 
 export { user }

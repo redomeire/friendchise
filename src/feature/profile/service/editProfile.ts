@@ -10,6 +10,7 @@ const editProfile = (token: string, data: typeof user) => {
             phone_number: data.phone_number,
             birth_date: data.birth_date,
             job: data.job,
+            bio: data.bio,
             gender: data.gender,
             profile_img: data.profile_img
         }, {

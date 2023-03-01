@@ -8,6 +8,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { BsCalendar3 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { ProfileContext } from "@/context/ProfileContext";
+import { dateFormatter } from "@/utils/dateFormatter";
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -35,7 +36,7 @@ const Profile = () => {
                 <div className="profile-pic flex flex-col justify-center items-center mb-5 ">
                     {
                         user.profile_img ?
-                            <div className="bg-cover bg-center rounded-full w-[130px] h-[130px]" style={{ backgroundImage: `url(${'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg'})` }} />
+                            <div className="bg-cover bg-center rounded-full w-[130px] h-[130px]" style={{ backgroundImage: `url(${user.profile_img})` }} />
                             :
                             <Button className="bg-primary w-[100px] h-[100px] md:text-4xl text-white">
                                 <Typography className="font-semibold">{user.username[0].toUpperCase()}</Typography>
@@ -78,7 +79,7 @@ const Profile = () => {
                                 type="date"
                                 placeholder="Masukkan tanggal lahir"
                                 className="rounded-full w-full"
-                                defaultValue={user.birth_date}
+                                defaultValue={dateFormatter(user.birth_date)}
                             />
                         </div>
                     </div>
@@ -104,7 +105,7 @@ const Profile = () => {
                             />
                         </div>
                         <div className="mt-5">
-                            <Typography className="mb-2 text-sm font-semibold">Pekerjaan</Typography>
+                            <Typography className="mb-2 text-sm font-semibold">Phone number</Typography>
                             <Input
                                 disabled
                                 type="text"

@@ -29,6 +29,10 @@ const RegisterForm = () => {
             const result = await register(forms)
 
             console.log(result);
+
+            setTimeout(() => {
+               navigate('/') 
+            }, 1000);
         } catch (error) {
             setIsLoading(false)
             console.error(error)

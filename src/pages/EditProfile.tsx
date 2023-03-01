@@ -12,12 +12,18 @@ import { editProfile } from "@/feature/profile/service/editProfile";
 import useLocalStorage from "@/hooks/useLocalStorage";
 
 import { user as pengguna } from "@/models/defaultValue/user";
+import { dateFormatter } from "@/utils/dateFormatter";
+import { updateProfilePage } from "@/feature/profile/service/updateProfilePic";
+import { deleteProfilePic } from "@/feature/profile/service/deleteProfilePic";
 
 const EditProfile = () => {
     const navigate = useNavigate();
     const { user } = useContext(ProfileContext);
     const [token] = useLocalStorage('token', '');
     const [forms, setForms] = useState(pengguna)
+    const [img, setImg] = useState<any>()
+    const [profile, setProfile] = useLocalStorage('profile', '');
+    const [tempUrl, setTempUrl] = useState<any>(user.profile_img);
 
     const handleUpdate = async () => {
         try {
@@ -25,7 +31,10 @@ const EditProfile = () => {
 
             console.log(result);
 
-            window.localStorage.setItem('profile', JSON.stringify(result?.data.data))
+            window.localStorage.setItem('profile', JSON.stringify({
+                ...result?.data.data,
+                birth_date: dateFormatter(result?.data.data.birth_date)
+            }))
 
             setTimeout(() => {
                 window.location.reload()
@@ -36,13 +45,43 @@ const EditProfile = () => {
         }
     }
 
+    const updateProfilePic = async () => {
+        try {
+            const result = await updateProfilePage(img, token.token)
+
+            setProfile(result?.data.data)
+
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const deletePic = async () => {
+        try {
+            const result = await deleteProfilePic(token.token);
+
+            setProfile(result?.data.data)
+
+            console.log(result)
+
+            setTimeout(() => {
+                window.location.reload()
+            }, 1500);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         const val = window.localStorage.getItem('profile')
 
         if (val !== null)
             setForms(JSON.parse(val!))
     }, [])
-    
+
     return (
         <AppLayout>
             <div className="md:px-32 px-20">
@@ -57,22 +96,55 @@ const EditProfile = () => {
                     <div className="md:w-[70%] bg-white shadow-lg p-10 min-h-[400px] mt-5 ml-5">
                         <div className="profile-pic flex items-center mb-5 ">
                             {
-                                user.profile_img ?
-                                    <div className="bg-cover bg-center rounded-full w-[90px] h-[90px]" style={{ backgroundImage: `url(${'https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/857f1570-d743-4d1a-9f45-7ef2b1797686_restaurant-image_1619947508391.jpg'})` }} />
+                                forms.profile_img !== "" ?
+                                    <div className="relative bg-cover bg-center rounded-full w-[90px] h-[90px]" style={{ backgroundImage: `url(${tempUrl})` }}>
+                                        <div className="absolute left-0 right-0 bottom-0 top-0 z-30 cursor-pointer">
+                                            <Input
+                                                onChange={(e) => {
+                                                    if (e.target.files !== undefined && e.target.files !== null) {
+                                                        let objectURL = null;
+                                                        if (e.target.files.length > 0) {
+
+                                                            objectURL = URL.createObjectURL(e.target.files[0]);
+                                                            setTempUrl(objectURL)
+                                                            setImg(e.target.files[0])
+                                                        }
+                                                    }
+                                                }}
+                                                type="file" className="opacity-0 cursor-pointer w-full " />
+                                        </div>
+                                    </div>
                                     :
-                                    <Button className="bg-primary w-[90px] h-[90px] md:text-2xl text-white">
-                                        {
-                                            user.username &&
-                                            <Typography className="font-semibold">{user.username[0]?.toUpperCase()}</Typography>
-                                        }
-                                    </Button>
+                                    <div className={`relative bg-cover bg-center rounded-full w-[90px] h-[90px] md:text-2xl text-white flex items-center justify-center bg-primary`} style={{ backgroundImage: `url(${tempUrl})` }}>
+                                        <Button className=" w-[90px] h-[90px] md:text-2xl text-white flex items-center justify-center">
+                                            {
+                                                user.username && !tempUrl &&
+                                                <Typography className="font-semibold">{user.username[0]?.toUpperCase()}</Typography>
+                                            }
+                                            <div className="absolute left-0 right-0 bottom-0 top-0 z-30 cursor-pointer">
+                                                <Input
+                                                    onChange={(e) => {
+                                                        if (e.target.files !== undefined && e.target.files !== null) {
+                                                            let objectURL = null;
+                                                            if (e.target.files.length > 0) {
+
+                                                                objectURL = URL.createObjectURL(e.target.files[0]);
+                                                                setTempUrl(objectURL)
+                                                                setImg(e.target.files[0])
+                                                            }
+                                                        }
+                                                    }}
+                                                    type="file" className="opacity-0 cursor-pointer w-full " />
+                                            </div>
+                                        </Button>
+                                    </div>
                             }
-                            <Button className="border-[2px] border-primary-dark text-primary-dark font-semibold hover:bg-primary-dark hover:text-white ml-7">
-                                <Typography className="text-sm">
+                            <Button onClick={updateProfilePic} className="relative cursor-pointer border-[2px] border-primary-dark text-primary-dark font-semibold hover:bg-primary-dark hover:text-white ml-7 min-w-[150px]">
+                                <Typography className="text-sm cursor-pointer">
                                     Unggah foto baru
                                 </Typography>
                             </Button>
-                            <Typography className="ml-7 text-sm text-primary-dark font-semibold hover:border-b-primary-dark border-b-[2px] border-b-transparent cursor-pointer">
+                            <Typography onClick={deletePic} className="ml-7 text-sm text-primary-dark font-semibold hover:border-b-primary-dark border-b-[2px] border-b-transparent cursor-pointer">
                                 Hapus Foto
                             </Typography>
                         </div>
@@ -113,7 +185,7 @@ const EditProfile = () => {
                                         type="date"
                                         placeholder="Masukkan tanggal lahir"
                                         className="rounded-full w-full"
-                                        defaultValue={user.birth_date}
+                                        defaultValue={dateFormatter(user.birth_date)}
                                         onChange={(e) => {
                                             setForms(prev => {
                                                 return { ...prev, birth_date: e.target.value }
@@ -152,15 +224,15 @@ const EditProfile = () => {
                                     />
                                 </div>
                                 <div className="mt-5">
-                                    <Typography className="mb-2 text-sm font-semibold">Pekerjaan</Typography>
+                                    <Typography className="mb-2 text-sm font-semibold">Nomor Telepon</Typography>
                                     <Input
                                         type="text"
                                         placeholder="Masukkan pekerjaan"
                                         className="rounded-full w-full"
-                                        defaultValue={user.job}
+                                        defaultValue={user.phone_number}
                                         onChange={(e) => {
                                             setForms(prev => {
-                                                return { ...prev, job: e.target.value }
+                                                return { ...prev, phone_number: e.target.value }
                                             })
                                         }}
                                     />
@@ -172,7 +244,12 @@ const EditProfile = () => {
                             <Input
                                 type="text"
                                 placeholder="Masukkan bio"
-                                className="rounded-full w-full"
+                                defaultValue={user.bio}
+                                className="rounded-full w-full" onChange={(e) => {
+                                    setForms(prev => {
+                                        return { ...prev, bio: e.target.value }
+                                    })
+                                }}
                             />
                         </div>
                         <div className="w-full items-center justify-center mt-10">

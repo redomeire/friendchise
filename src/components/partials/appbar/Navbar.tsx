@@ -121,7 +121,7 @@ const ProfileAvatar = ({ openProfile, setOpenProfile }: { openProfile: boolean, 
             }
             {
                 user.profile_img ?
-                    <img src={user.profile_img} className="w-[40px] h-[40px] rounded-full" />
+                    <div className={`w-[40px] h-[40px] rounded-full bg-cover bg-center`} style={{ backgroundImage: `url('${user.profile_img}')` }} />
                     :
                     <Button onClick={() => { setOpenProfile(true) }} className="bg-primary w-[40px] h-[40px] text-white">
                         {

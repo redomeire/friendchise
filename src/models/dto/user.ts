@@ -10,6 +10,7 @@ type user = {
     job: string,
     name: string,
     phone_number: string,
+    bio: string
 }
 
 export interface User {
