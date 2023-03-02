@@ -1,7 +1,9 @@
 import React from "react";
 
 const getInitialValue = (key: string, initialValue: string | Function) => {
-    const val = window.localStorage.getItem(key)!;
+    const val = window.localStorage.getItem(key);
+    if(val === null) return initialValue
+    
     const value = val !== 'undefined' && val !== '' ? JSON.parse(val) : 'undefined';
 
     if (value) return value
