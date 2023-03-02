@@ -28,14 +28,7 @@ const Testimony = () => {
                 <Typography className="font-semibold text-3xl">
                     kata mereka
                 </Typography>
-                <div className="items-center mr-5 md:flex hidden">
-                    <Button className="text-white bg-primary rounded-full" onClick={handlePrev}>
-                        <BsChevronLeft size={25} />
-                    </Button>
-                    <Button className="text-white bg-primary rounded-full ml-3" onClick={handleNext}>
-                        <BsChevronRight size={25} />
-                    </Button>
-                </div>
+                
             </div>
             <div className="mt-10 flex justify-between items-start">
                 <Swiper
@@ -113,8 +106,8 @@ const Testimony = () => {
                     </SwiperSlide>
                 </Swiper>
             </div>
-            <div className="w-full md:mt-10">
-                <div className="items-center md:hidden flex justify-center mb-10">
+            <div className="w-full mt-8">
+                <div className="items-center flex justify-center mb-10">
                     <Button className="border-primary border-[2px] text-primary rounded-full" onClick={handlePrev}>
                         <BsChevronLeft size={25} />
                     </Button>
@@ -122,7 +115,6 @@ const Testimony = () => {
                         <BsChevronRight size={25} />
                     </Button>
                 </div>
-                <Button className="bg-primary font-semibold text-white mx-auto px-10">Mulai Berbisnis</Button>
             </div>
         </div>
     );

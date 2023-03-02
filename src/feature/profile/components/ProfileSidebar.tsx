@@ -9,7 +9,7 @@ const ProfileSidebar = () => {
     const { user } = useContext(ProfileContext);
 
     return (
-        <div className="sticky py-5 top-24 rounded-xl shadow-lg md:w-[25%] left-32 min-h-[300px] bg-white">
+        <div className="md:sticky lg:block hidden py-5 top-24 rounded-xl shadow-lg md:w-[25%] left-32 min-h-[300px] bg-white">
             <div className="profile-pic flex flex-col justify-center items-center m-5 ">
                 {
                     user.profile_img ?

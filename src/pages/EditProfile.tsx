@@ -15,6 +15,9 @@ import { user as pengguna } from "@/models/defaultValue/user";
 import { dateFormatter } from "@/utils/dateFormatter";
 import { updateProfilePage } from "@/feature/profile/service/updateProfilePic";
 import { deleteProfilePic } from "@/feature/profile/service/deleteProfilePic";
+import { profileTab } from "@/feature/profile/utils/dummy";
+
+import scrollbar from "@/components/styles/scrollbar.module.css";
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -24,6 +27,7 @@ const EditProfile = () => {
     const [img, setImg] = useState<any>()
     const [profile, setProfile] = useLocalStorage('profile', '');
     const [tempUrl, setTempUrl] = useState<any>(user.profile_img);
+    const [tab, setTab] = useState('Ubah Profil')
 
     const handleUpdate = async () => {
         try {
@@ -84,7 +88,7 @@ const EditProfile = () => {
 
     return (
         <AppLayout>
-            <div className="md:px-32 px-20">
+            <div className="md:px-32 px-10">
                 <Button onClick={() => { navigate('/profile') }} className="flex items-center text-primary mb-5">
                     <BiArrowBack />
                     <Typography className="ml-3">
@@ -93,11 +97,11 @@ const EditProfile = () => {
                 </Button>
                 <div className="flex items-start w-full justify-between">
                     <ProfileSidebar />
-                    <div className="md:w-[70%] bg-white shadow-lg p-10 min-h-[400px] mt-5 ml-5">
-                        <div className="profile-pic flex items-center mb-5 ">
+                    <div className="lg:w-[70%] w-full bg-white shadow-lg p-10 min-h-[400px] mt-5 md:ml-5">
+                        <div className="profile-pic flex md:flex-row flex-col items-center mb-5 ">
                             {
                                 forms.profile_img !== "" ?
-                                    <div className="relative bg-cover bg-center rounded-full w-[90px] h-[90px]" style={{ backgroundImage: `url(${tempUrl})` }}>
+                                    <div className="relative bg-cover bg-center rounded-full w-[90px] h-[90px] md:mb-0 mb-5" style={{ backgroundImage: `url(${tempUrl})` }}>
                                         <div className="absolute left-0 right-0 bottom-0 top-0 z-30 cursor-pointer">
                                             <Input
                                                 onChange={(e) => {
@@ -139,17 +143,28 @@ const EditProfile = () => {
                                         </Button>
                                     </div>
                             }
-                            <Button onClick={updateProfilePic} className="relative cursor-pointer border-[2px] border-primary-dark text-primary-dark font-semibold hover:bg-primary-dark hover:text-white ml-7 min-w-[150px]">
+                            <Button onClick={updateProfilePic} className="relative mb-3 md:mb-0 cursor-pointer border-[2px] border-primary-dark text-primary-dark font-semibold hover:bg-primary-dark hover:text-white md:ml-7 min-w-[150px]">
                                 <Typography className="text-sm cursor-pointer">
                                     Unggah foto baru
                                 </Typography>
                             </Button>
-                            <Typography onClick={deletePic} className="ml-7 text-sm text-primary-dark font-semibold hover:border-b-primary-dark border-b-[2px] border-b-transparent cursor-pointer">
+                            <Typography onClick={deletePic} className="md:ml-7 text-sm text-primary-dark font-semibold hover:border-b-primary-dark border-b-[2px] border-b-transparent cursor-pointer">
                                 Hapus Foto
                             </Typography>
+                            <div className={`md:hidden flex items-center w-full overflow-auto whitespace-nowrap scrollbar mt-5 ${scrollbar.scrollbar_hide}`}>
+                                {
+                                    profileTab.map((item, index) => {
+                                        return (
+                                            <div onClick={() => { setTab(item.name) }} key={index} className={`cursor-pointer w-full hover:text-primary transition duration-200 border-b-[2px] p-1 px-3 my-3 ${tab === item.name ? 'border-b-primary-dark text-primary' : 'border-transparent'} text-center`}>
+                                                <Typography className="text-sm">{item.name}</Typography>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <div className="md:w-[47%]">
+                        <div className="flex items-center md:flex-row flex-col justify-between">
+                            <div className="md:w-[47%] w-full">
                                 <div className="mt-5">
                                     <Typography className="mb-2 text-sm font-semibold">Nama Lengkap</Typography>
                                     <Input
@@ -194,7 +209,7 @@ const EditProfile = () => {
                                     />
                                 </div>
                             </div>
-                            <div className="md:w-[47%]">
+                            <div className="md:w-[47%] w-full">
                                 <div className="mt-5">
                                     <Typography className="mb-2 text-sm font-semibold">Jenis Kelamin</Typography>
                                     <Input

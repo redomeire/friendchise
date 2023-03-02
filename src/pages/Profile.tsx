@@ -16,13 +16,13 @@ const Profile = () => {
 
     return (
         <AppLayout>
-            <Button onClick={() => { navigate(-1) }} className="md:px-32 px-20 flex items-center text-primary">
-                <BiArrowBack />
-                <Typography className="ml-3">
+            <Button onClick={() => { navigate(-1) }} className="md:px-32 px-10 flex items-center text-primary">
+                <BiArrowBack size={15} />
+                <Typography className="ml-3 text-[15px]">
                     Kembali
                 </Typography>
             </Button>
-            <div className="md:w-[800px] bg-white shadow-lg p-10 mx-auto min-h-[400px] mt-5">
+            <div className="md:w-[800px] bg-white md:shadow-lg p-10 mx-auto min-h-[400px] mt-5">
                 <div className="w-full flex justify-end">
                     <Button
                         onClick={() => { navigate('/profile/edit') }}
@@ -49,8 +49,8 @@ const Profile = () => {
                         Bio
                     </Typography>
                 </div>
-                <div className="flex items-center justify-between">
-                    <div className="md:w-[47%]">
+                <div className="flex items-center md:flex-row flex-col justify-between">
+                    <div className="md:w-[47%] w-full">
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Nama Lengkap</Typography>
                             <Input
@@ -83,7 +83,7 @@ const Profile = () => {
                             />
                         </div>
                     </div>
-                    <div className="md:w-[47%]">
+                    <div className="md:w-[47%] w-full">
                         <div className="mt-5">
                             <Typography className="mb-2 text-sm font-semibold">Jenis Kelamin</Typography>
                             <Input

@@ -6,7 +6,7 @@ import "@/components/styles/swiper.css";
 
 const Home = () => {
     return (
-        <AppLayout>
+        <AppLayout style={{ paddingTop: '80px' }}>
             <Jumbotron />
             <Main />
             <Testimony />
