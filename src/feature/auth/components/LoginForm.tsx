@@ -12,7 +12,8 @@ import { login } from "../service/login";
 import { LoginContext } from "@/context/LoginContext";
 
 import { AnimatePresence, motion } from "framer-motion";
-import axios from "axios";
+import { createAxiosInstance } from "@/feature/api/AxiosInstance";
+import { dateFormatter } from "@/utils/dateFormatter";
 
 const LoginForm = () => {
     const [passwordVisible, setPasswordVisible] = useState(false)
@@ -20,7 +21,6 @@ const LoginForm = () => {
         email: '',
         password: ''
     })
-
     const { setVisible, visible } = useContext(LoginContext)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -30,15 +30,15 @@ const LoginForm = () => {
         setIsLoading(true)
 
         try {
-            const result = await axios.post('https://reqres.in/api/login', {
-                email,
-                password
-            })
-
+            const result = await login(email, password)
 
             console.log(result);
 
-            window.localStorage.setItem('token', result?.data.token)
+            window.localStorage.setItem('token', JSON.stringify(result?.data.data.token))
+            window.localStorage.setItem('profile', JSON.stringify({
+                ...result?.data.data.profile,
+                birth_date: dateFormatter(result?.data.data.profile.birth_date)
+            }))
 
             setTimeout(() => {
                 if(result) 
@@ -119,7 +119,7 @@ const LoginForm = () => {
                             }
                         />
                         <Button
-                        loading={isLoading}
+                            loading={isLoading}
                             type="submit"
                             className="w-full bg-primary text-white mt-7"
                         >Masuk</Button>

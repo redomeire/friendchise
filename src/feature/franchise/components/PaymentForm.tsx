@@ -1,17 +1,14 @@
 import Button from "@/components/button/Button";
-import Input from "@/components/input/Input";
 import Typography from "@/components/typography/Typography";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { BiArrowBack } from "react-icons/bi";
 import { BsArrowLeft, BsFillCheckCircleFill } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
 import { payment } from "../utils/dummy";
 import StepOne from "./PaymentStep/StepOne";
 import StepThree from "./PaymentStep/StepThree";
 import StepTwo from "./PaymentStep/StepTwo";
+
+import scrollbar from "@/components/styles/scrollbar.module.css";
 
 interface Props {
     visiblePayment: boolean,
@@ -41,7 +38,7 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
 
                         <div className="p-7 bg-primary rounded-t-xl text-white flex items-center">
                             <BsArrowLeft className="md:w-[25px] w-[50px]" />
-                            <div className="flex items-center overflow-auto">
+                            <div className={`flex items-center overflow-auto ${scrollbar.scrollbar_hide}`}>
                                 {
                                     payment.map((item, index) => {
                                         return (
