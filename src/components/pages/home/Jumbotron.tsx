@@ -13,7 +13,7 @@ const Jumbotron = () => {
     const [value, setValue] = React.useState('');
 
     return (
-        <div className="md:px-20 px-8 p-5 min-h-[60vh] flex items-center lg:flex-row flex-col-reverse justify-between">
+        <div className="md:px-20 px-8 p-5 min-h-[80vh] flex items-center lg:flex-row flex-col-reverse justify-between">
             <div className="md:w-[45%]">
                 <Typography className="capitalize leading-[50px] md:text-[36px] text-[32px] md:font-[700] font-[600]">
                     mulai bisnis anda dengan cepat dan mudah
