@@ -12,7 +12,8 @@ interface Franchise {
     price?: number,
     updated_at?: Date,
     saved?: number,
-    savedCompanyId: number
+    savedCompanyId?: number,
+    city_name?: string
 }
 
 export type { Franchise }

@@ -22,12 +22,14 @@ import { rupiahFormatter } from "@/utils/rupiahFormatter";
 import { saveFranchise } from "@/feature/franchise/service/saveFranchise";
 import { removeFranchise } from "@/feature/franchise/service/removeFranchise";
 
+import { franchise as franchiseValue } from "@/models/defaultValue/franchise";
+
 const DetailWaralaba = () => {
     const [visible, setVisible] = useState(false)
     const [visiblePayment, setVisiblePayment] = useState(false)
     const [token] = useLocalStorage('token', '');
     const { franchiseId } = useParams();
-    const [franchise, setFranchise] = useState<Franchise & { city_name?: string, saved?: number, savedCompanyId?: number }>({});
+    const [franchise, setFranchise] = useState<Franchise>(franchiseValue);
     const [imageUrl, setImageUrl] = useState<string[]>([]);
     const [saved, setSaved] = useState<boolean>(franchise.saved === 1);
 
