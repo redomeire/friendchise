@@ -22,7 +22,7 @@ const Waralaba = () => {
         name: '',
         city_id: ''
     });
-    const [franchises, setFranchises] = useState([]);
+    const [franchises, setFranchises] = useState<Franchise[]>([]);
     const [cities, setCities] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -31,6 +31,9 @@ const Waralaba = () => {
             const result = await searchFranchise(token.token, searchParams.get('name')!, searchParams.get('city_id')!)
 
             setFranchises(result?.data.data)
+
+            console.log(result);
+            
 
         } catch (error) {
             console.error(error)

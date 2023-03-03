@@ -12,12 +12,43 @@ import { RiShoppingBasketLine } from "react-icons/ri";
 import AboutCompany from "@/feature/franchise/components/AboutCompany";
 import ChatDrawer from "@/feature/franchise/components/ChatDrawer";
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import PaymentForm from "@/feature/franchise/components/PaymentForm";
+import { useParams } from "react-router-dom";
+import { getFranchiseDetail } from "@/feature/franchise/service/getFranchiseDetail";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { Franchise } from "@/models/dto/franchise";
+import { rupiahFormatter } from "@/utils/rupiahFormatter";
 
 const DetailWaralaba = () => {
     const [visible, setVisible] = useState(false)
     const [visiblePayment, setVisiblePayment] = useState(false)
+    const [token] = useLocalStorage('token', '');
+    const { franchiseId } = useParams();
+    const [franchise, setFranchise] = useState<Franchise & { city_name?: string }>({});
+    const [imageUrl, setImageUrl] = useState<string[]>([]);
+
+    useEffect(() => {
+        const getDetail = async () => {
+            const id = franchiseId === undefined ? 0 : franchiseId
+
+            try {
+                const result = await getFranchiseDetail(token.token, id)
+
+                console.log(result);
+
+                setFranchise(result?.data.data)
+                
+                const imgUrl = result?.data.data.image_url;
+
+                setImageUrl(JSON.parse(imgUrl))
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        getDetail()
+    }, [])
 
     const links = [
         {
@@ -29,7 +60,7 @@ const DetailWaralaba = () => {
             url: '/lokasi'
         },
         {
-            name: 'Jawa Tengah',
+            name: franchise?.city_name! || 'Indonesia',
             url: '/waralaba'
         },
         {
@@ -45,23 +76,23 @@ const DetailWaralaba = () => {
             />
             <main className="md:px-20 px-5 mt-10">
                 <div className="flex items-stretch justify-between md:flex-row flex-col">
-                    <div className="md:w-[70%] w-full bg-cover bg-center min-h-[400px] rounded-xl" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
+                    <div className="md:w-[70%] w-full bg-cover bg-center min-h-[400px] rounded-xl" style={{ backgroundImage: `url(${imageUrl[0]})` }} />
                     <div className="md:w-[30%] flex md:flex-col flex-row justify-between md:ml-5 md:mt-0 mt-5">
-                        <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl md:mb-5 md:mr-0 mr-5" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
-                        <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
+                        <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl md:mb-5 md:mr-0 mr-5" style={{ backgroundImage: `url(${imageUrl[1]})` }} />
+                        <div className="bg-cover bg-center w-full min-h-[200px] rounded-xl" style={{ backgroundImage: `url(${imageUrl[2]})` }} />
                     </div>
                 </div>
                 <div className="flex justify-between items-start">
                     <div>
                         <Typography className="text-3xl my-3 mt-10" thickness="bold">
-                            Ropi: Roti Bikin Hepi
+                            {franchise?.outlet_name}
                         </Typography>
                         <Typography className="text-xl" thickness="bold">
-                            PT Juara Roti Indonesia
+                            {franchise?.name}
                         </Typography>
-                        <Typography className="mt-3"><span className="font-semibold">Gerai</span> 1000 | <MdLocationOn className="inline" size={20} /> Sukabumi, Jawa Barat</Typography>
+                        <Typography className="mt-3"><span className="font-semibold">Gerai</span> {franchise?.outlet_count} | <MdLocationOn className="inline" size={20} />{franchise?.city_name}</Typography>
                         <Typography thickness="bold" variant="heading3" className="mt-7">
-                            Rp 8.976.500
+                            {rupiahFormatter(franchise?.price!)}
                         </Typography>
                         <Typography thickness="bold" className="my-4">
                             Fasilitas
@@ -96,7 +127,9 @@ const DetailWaralaba = () => {
                                 </Button>
                             </div>
                         </div>
-                        <AboutCompany />
+                        <AboutCompany 
+                            data={franchise}
+                        />
                     </div>
                     <div className="md:min-w-[330px] mt-10 md:sticky md:top-24 fixed bottom-0 bg-white left-0 right-0 md:p-5 p-7 md:pb-7 md:rounded-xl pb-10 shadow">
                         <Button onClick={() => { setVisible(true) }} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>

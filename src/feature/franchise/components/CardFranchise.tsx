@@ -8,14 +8,44 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Franchise } from "@/models/dto/franchise";
+import { rupiahFormatter } from "@/utils/rupiahFormatter";
+import { saveFranchise } from "@/feature/franchise/service/saveFranchise";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { removeFranchise } from "@/feature/franchise/service/removeFranchise";
 
-const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
-    const [saved, setSaved] = useState(false);
+const CardFranchise = ({ franchise }: { franchise: Franchise & { saved?: number, savedCompanyId?: number } }) => {
+    const [saved, setSaved] = useState(franchise.saved === 1);
     const navigate = useNavigate()
+    const [token] = useLocalStorage('token', '')
+
+    const save = async () => {
+        try {
+            const result = await saveFranchise(token.token, franchise?.id!);
+
+            console.log(result);
+
+            setSaved(true)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const removeFromSaved = async () => {
+        try {
+            const result = await removeFranchise(token.token, franchise?.savedCompanyId!)
+
+            console.log(result);
+
+            setSaved(false);
+        
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <div className="md:mx-3 md:mb-7 mb-3 hover:shadow-md cursor-pointer transition duration-200 p-5 rounded-xl border border-gray-400 bg-white md:min-w-[350px] min-w-[250px] min-h-[300px] md:w-[300px] w-full">
-            <div onClick={() => { navigate('/waralaba/1') }} className="bg-cover bg-center min-h-[150px] w-full rounded-xl hover:opacity-80 transition duration-200" style={{ backgroundImage: `url(${franchise.image_thumbnail})` }} />
+            <div onClick={() => { navigate(`/waralaba/${franchise.id}`) }} className="bg-cover bg-center min-h-[150px] w-full rounded-xl hover:opacity-80 transition duration-200" style={{ backgroundImage: `url(${franchise.image_thumbnail})` }} />
             <div className="flex items-start mt-3 justify-between">
                 <div>
                     <Typography onClick={() => { navigate('/waralaba/1') }} thickness="bold" className="text-lg hover:underline">
@@ -30,7 +60,7 @@ const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
                     </div>
                     <div className="flex items-center mt-2">
                         <BiDollar size={22} />
-                        <Typography className="ml-2 text-sm">{franchise.price}</Typography>
+                        <Typography className="ml-2 text-sm">{rupiahFormatter(franchise?.price!)}</Typography>
                     </div>
                 </div>
                 <AnimatePresence>
@@ -43,7 +73,7 @@ const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
                                     exit={{ y: 30 }}
                                     transition={{ duration: 0.2 }}
                                 >
-                                    <BsFillBookmarkFill className="fill-primary" onClick={() => { setSaved(false) }} size={23} />
+                                    <BsFillBookmarkFill onClick={removeFromSaved} className="fill-primary" size={23} />
                                 </motion.div>
                                 :
                                 <div>
@@ -53,7 +83,7 @@ const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
                                         exit={{ y: 30 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <BsBookmark onClick={() => { setSaved(true) }} size={23} />
+                                        <BsBookmark onClick={save} size={23} />
                                     </motion.div>
                                 </div>
                         }
