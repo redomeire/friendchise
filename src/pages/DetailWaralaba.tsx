@@ -3,7 +3,7 @@ import Button from "@/components/button/Button";
 import AppLayout from "@/components/partials/layout/AppLayout";
 import Typography from "@/components/typography/Typography";
 import { BiPackage, BiStore } from "react-icons/bi";
-import { BsBookmark, BsShareFill } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill, BsShareFill } from "react-icons/bs";
 
 import { MdLocationOn } from "react-icons/md";
 import { CiCoffeeCup } from "react-icons/ci";
@@ -19,14 +19,21 @@ import { getFranchiseDetail } from "@/feature/franchise/service/getFranchiseDeta
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { Franchise } from "@/models/dto/franchise";
 import { rupiahFormatter } from "@/utils/rupiahFormatter";
+import { saveFranchise } from "@/feature/franchise/service/saveFranchise";
+import { removeFranchise } from "@/feature/franchise/service/removeFranchise";
 
 const DetailWaralaba = () => {
     const [visible, setVisible] = useState(false)
     const [visiblePayment, setVisiblePayment] = useState(false)
     const [token] = useLocalStorage('token', '');
     const { franchiseId } = useParams();
-    const [franchise, setFranchise] = useState<Franchise & { city_name?: string }>({});
+    const [franchise, setFranchise] = useState<Franchise & { city_name?: string, saved?: number, savedCompanyId?: number }>({});
     const [imageUrl, setImageUrl] = useState<string[]>([]);
+    const [saved, setSaved] = useState<boolean>(franchise.saved === 1);
+
+    useEffect(() => {
+        setSaved(franchise?.saved === 1)
+    }, [franchise?.saved])
 
     useEffect(() => {
         const getDetail = async () => {
@@ -38,7 +45,7 @@ const DetailWaralaba = () => {
                 console.log(result);
 
                 setFranchise(result?.data.data)
-                
+
                 const imgUrl = result?.data.data.image_url;
 
                 setImageUrl(JSON.parse(imgUrl))
@@ -68,6 +75,31 @@ const DetailWaralaba = () => {
             url: '/waralaba'
         },
     ]
+
+
+    const save = async () => {
+        try {
+            const result = await saveFranchise(token.token, franchise?.id!);
+
+            console.log(result);
+
+            setSaved(true)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const removeFromSaved = async () => {
+        try {
+            const result = await removeFranchise(token.token, franchise?.savedCompanyId!)
+
+            console.log(result);
+
+            setSaved(false)
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <AppLayout>
@@ -127,7 +159,7 @@ const DetailWaralaba = () => {
                                 </Button>
                             </div>
                         </div>
-                        <AboutCompany 
+                        <AboutCompany
                             data={franchise}
                         />
                     </div>
@@ -135,10 +167,18 @@ const DetailWaralaba = () => {
                         <Button onClick={() => { setVisible(true) }} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
                         <Button onClick={() => { setVisiblePayment(true) }} className="border-[1.5px] border-primary bg-primary w-full text-white mt-3">Daftar Waralaba</Button>
                         <div className="flex items-center justify-between mt-3">
-                            <Button className="w-[47%] border-[1.5px] border-gray-500 text-gray-500 flex items-center">
-                                <BsBookmark />
-                                <Typography className="ml-2">Simpan</Typography>
-                            </Button>
+                            {
+                                saved ?
+                                    <Button onClick={removeFromSaved} className="w-[47%] border-[1.5px] border-primary text-primary flex items-center">
+                                        <BsBookmarkFill />
+                                        <Typography className="ml-2">Hapus</Typography>
+                                    </Button>
+                                    :
+                                    <Button onClick={save} className="w-[47%] border-[1.5px] border-gray-500 text-gray-500 flex items-center">
+                                        <BsBookmark />
+                                        <Typography className="ml-2">Simpan</Typography>
+                                    </Button>
+                            }
                             <Button className="w-[47%] border-[1.5px] border-gray-500 text-gray-500 flex items-center">
                                 <BsShareFill />
                                 <Typography className="ml-2">Bagikan</Typography>
