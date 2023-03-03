@@ -27,7 +27,7 @@ const Navbar = () => {
     const navbarDatas = [
         {
             name: 'Waralaba',
-            url: '/waralaba'
+            url: '/waralaba?name=&city_id='
         },
         {
             name: 'Riwayat',
@@ -63,7 +63,7 @@ const Navbar = () => {
                             navbarDatas.map((item, index) => {
                                 return (
                                     <a key={index} href={item.url} className="w-full mx-5 md:border-b-0 border-b py-3 md:py-0">
-                                        <li className={`md:text-base text-sm font-[500] border-b-[2px] border-b-transparent md:hover:border-b-black transition duration-200 ${window.location.pathname === item.url ? 'font-semibold text-primary-darker' : ''}`}>
+                                        <li className={`md:text-base text-sm font-[500] border-b-[2px] border-b-transparent md:hover:border-b-black transition duration-200 ${window.location.href.includes(item.url) ? 'font-semibold text-primary-darker' : ''}`}>
                                             {item.name}
                                         </li>
                                     </a>

@@ -21,7 +21,7 @@ const Jumbotron = () => {
                 <p className="text-md mt-5">
                     Memulai bisnis dengan manajemen yang sudah teruji. Didukung penuh oleh partner profesional dengan modal terjangkau
                 </p>
-                <form className="mt-10 w-full flex items-center md:flex-row flex-col">
+                <div className="mt-10 w-full flex items-center md:flex-row flex-col">
                     <Input
                         beginningIcon={<AiOutlineSearch size={20} />}
                         type={'text'}
@@ -30,13 +30,13 @@ const Jumbotron = () => {
                         onChange={e => { setValue(e.target.value) }}
                     />
                     <Button
-                        onClick={() => { navigate(`/search?q=${value}`) }}
+                        onClick={() => { navigate(`/waralaba?name=${value}&city_id=`) }}
                         className="md:ml-5 bg-primary md:min-w-[150px] font-semibold text-white md:mt-0 mt-5 min-w-full">
                             <Typography className="p-1">
                                 Cari
                             </Typography>
                         </Button>
-                </form>
+                </div>
             </div>
             <div className="lg:w-[40%] w-[70%] lg:mb-0 mb-10">
                 <img src={Hero} className="w-full"/>

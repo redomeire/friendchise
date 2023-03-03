@@ -2,7 +2,7 @@ import axios from "axios"
 
 const createAxiosInstance = () => {
     const res = axios.create({ 
-        baseURL: 'http://localhost:3333/api/v1'
+        baseURL: import.meta.env.VITE_APP_API_BASEURL
      })
 
      return res
