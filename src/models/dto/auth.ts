@@ -1,7 +1,3 @@
-interface auth {
-    
-}
-
 interface Register {
     email: string,
     password: string,
@@ -11,4 +7,4 @@ interface Register {
     username: string
 }
 
-export type { auth, Register }
+export type { Register }
