@@ -13,7 +13,7 @@ import { saveFranchise } from "@/feature/franchise/service/saveFranchise";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { removeFranchise } from "@/feature/franchise/service/removeFranchise";
 
-const CardFranchise = ({ franchise }: { franchise: Franchise & { saved?: number, savedCompanyId?: number } }) => {
+const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
     const [saved, setSaved] = useState(franchise.saved === 1);
     const navigate = useNavigate()
     const [token] = useLocalStorage('token', '')

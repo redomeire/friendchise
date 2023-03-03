@@ -10,7 +10,9 @@ interface Franchise {
     outlet_count?: number,
     outlet_name?: string,
     price?: number,
-    updated_at?: Date
+    updated_at?: Date,
+    saved?: number,
+    savedCompanyId: number
 }
 
 export type { Franchise }
