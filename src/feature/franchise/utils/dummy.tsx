@@ -8,6 +8,7 @@ import Shopeepay from "@/assets/payment/shopeepay.png";
 import Bri from "@/assets/payment/bri.png";
 import Mandiri from "@/assets/payment/mandiri.png";
 import Bni from "@/assets/payment/bni.png";
+import { Franchise } from "@/models/dto/franchise";
 
 const payment = [
     {
@@ -67,7 +68,31 @@ const paymentMethod = [
     },
 ]
 
+const getLinks = ({ franchise, id }: { franchise: Franchise, id?: string }) => {
+    const links = [
+        {
+            name: 'Waralaba',
+            url: '/waralaba?name=&city_id='
+        },
+        {
+            name: 'Lokasi',
+            url: '/lokasi'
+        },
+        {
+            name: franchise?.city_name! || 'Indonesia',
+            url: `/waralaba?name=&city_id=${franchise?.city_id}`
+        },
+        {
+            name: 'Outlet / Restoran',
+            url: `/waralaba/${id}`
+        },
+    ]
+
+    return links
+}
+
 export {
     payment,
-    paymentMethod
+    paymentMethod,
+    getLinks
 }
