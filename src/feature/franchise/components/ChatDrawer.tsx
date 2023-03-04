@@ -9,12 +9,75 @@ import { FaTelegramPlane } from "react-icons/fa";
 
 import { AnimatePresence, motion } from "framer-motion";
 
+import { Socket } from "socket.io-client"
+import { useEffect, useState, useRef } from "react";
+import { storeMessage } from "@/feature/chat/service/storeMessage";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { getMessages } from "@/feature/chat/service/getMessages";
+import { Message } from "@/models/dto/message";
+
 interface Props {
     visible: boolean,
     setVisible: React.Dispatch<React.SetStateAction<boolean>>
+    socket: Socket,
+    chatData: { id: string | number },
+    setChatData: React.Dispatch<React.SetStateAction<{ id: number }>>
 }
 
-const ChatDrawer = ({ visible, setVisible }: Props) => {
+const ChatDrawer = ({ visible, setVisible, socket, chatData, setChatData }: Props) => {
+    const [messages, setMessages] = useState<Message>([])
+    const [value, setValue] = useState('')
+    const [token] = useLocalStorage('token', '')
+    const lastMessageRef = useRef<any>(null);
+
+    useEffect(() => {
+        socket.on(`client:room:${chatData.id}`, (data) => {
+            setChatData(data)
+        })
+
+        socket.on(`client:chat:${chatData.id}`, (data) => {
+            setMessages((prev) => [...prev, data])
+        })
+    }, [socket, chatData.id])
+
+    useEffect(() => {
+        const getAllMessages = async () => {
+            try {
+                const result = await getMessages(token.token, chatData.id)
+
+                console.log(result);
+                
+                setMessages(result?.data.data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        getAllMessages()
+    }, [chatData.id])
+
+
+    const message = async () => {
+        const chat = {
+            chat_id: chatData.id,
+            text_message: value,
+            sent_by_user: true
+        }
+
+        try {
+            const result = await storeMessage(token.token, chat)
+
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        if (lastMessageRef.current !== null)
+            lastMessageRef.current.scrollTop = lastMessageRef.current.scrollHeight
+    }, [messages])
+
     return (
         <AnimatePresence>
             {
@@ -22,11 +85,11 @@ const ChatDrawer = ({ visible, setVisible }: Props) => {
                 <>
                     <div onClick={() => { setVisible(false) }} className=" bg-[#00000031] fixed top-0 left-0 right-0 bottom-0 z-40" />
                     <motion.div
-                    initial={{ x: 200, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    exit={{ x: 200, opacity: 0 }}
-                    className="p-4 min-h-screen fixed top-0 md:w-[400px] z-50 bg-white right-0">
+                        initial={{ x: 200, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        exit={{ x: 200, opacity: 0 }}
+                        className="p-4 min-h-screen fixed top-0 md:w-[400px] z-50 bg-white right-0">
                         <div className="relative h-[95vh]">
                             <div className="flex items-center">
                                 <BsArrowLeft onClick={() => { setVisible(false) }} size={25} />
@@ -42,24 +105,27 @@ const ChatDrawer = ({ visible, setVisible }: Props) => {
                             <div className="bg-[#FEF0C7] p-2 text-sm mb-5">
                                 Friendchise menjaga keamanan transaksi Anda. Gunakan pesan dan pembayaran di portal Friendchise. <a href="/" className="text-blue-600 hover:underline">Baca Selengkapnya</a>
                             </div>
-                            <div className={`relative h-[58vh] overflow-y-auto scrollbar ${scrollbar.scrollbar_hide}`}>
-                                <ChatBubble
-                                    sent_by_franchise={false}
-                                    text="To eres el mejor portero del mundo"
-                                />
-                                <ChatBubble
-                                    sent_by_franchise
-                                    text="Artinya apa bang messi Artinya apa bang messi"
-                                />
-
+                            <div className={`relative h-[58vh] overflow-y-auto scrollbar ${scrollbar.scrollbar_hide}`} ref={lastMessageRef}>
+                                {
+                                    messages.map((message, index) => {
+                                        return (
+                                            <ChatBubble
+                                                key={index}
+                                                sent_by_user={message.sent_by_user}
+                                                text={message.text_message}
+                                            />
+                                        )
+                                    })
+                                }
                             </div>
                             <div className="absolute bottom-0 left-0 right-0 flex items-center">
                                 <Input
+                                    onChange={e => { setValue(e.target.value) }}
                                     type="text"
                                     className="w-full border border-gray-400"
                                     placeholder="chat here..."
                                 />
-                                <Button className="bg-primary text-white ml-2">
+                                <Button onClick={message} className="bg-primary text-white ml-2">
                                     <Typography className="text-sm p-1">
                                         <FaTelegramPlane size={20} />
                                     </Typography>

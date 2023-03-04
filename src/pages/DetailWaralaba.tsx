@@ -24,7 +24,11 @@ import { removeFranchise } from "@/feature/franchise/service/removeFranchise";
 
 import { franchise as franchiseValue } from "@/models/defaultValue/franchise";
 
-const DetailWaralaba = () => {
+import { Socket } from "socket.io-client";
+import { getLinks } from "@/feature/franchise/utils/dummy";
+import { createRoom } from "@/feature/chat/service/createRoom";
+
+const DetailWaralaba = ({ socket }: { socket: Socket }) => {
     const [visible, setVisible] = useState(false)
     const [visiblePayment, setVisiblePayment] = useState(false)
     const [token] = useLocalStorage('token', '');
@@ -32,6 +36,7 @@ const DetailWaralaba = () => {
     const [franchise, setFranchise] = useState<Franchise>(franchiseValue);
     const [imageUrl, setImageUrl] = useState<string[]>([]);
     const [saved, setSaved] = useState<boolean>(franchise.saved === 1);
+    const [chatData, setChatData] = useState({ id: 0 });
 
     useEffect(() => {
         setSaved(franchise?.saved === 1)
@@ -59,26 +64,6 @@ const DetailWaralaba = () => {
         getDetail()
     }, [])
 
-    const links = [
-        {
-            name: 'Waralaba',
-            url: '/waralaba'
-        },
-        {
-            name: 'Lokasi',
-            url: '/lokasi'
-        },
-        {
-            name: franchise?.city_name! || 'Indonesia',
-            url: '/waralaba'
-        },
-        {
-            name: 'Outlet / Restoran',
-            url: '/waralaba'
-        },
-    ]
-
-
     const save = async () => {
         try {
             const result = await saveFranchise(token.token, franchise?.id!);
@@ -98,15 +83,32 @@ const DetailWaralaba = () => {
             console.log(result);
 
             setSaved(false)
+
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    const createChatRoom = async () => {
+        try {
+            const result = await createRoom(token.token, franchise?.id!)
+
+            console.log(result);
+
+            setVisible(true)
+
+            setChatData(result?.data.data)
+            
+        } catch (error) {
+            console.error(error);
+            setVisible(false)
         }
     }
 
     return (
         <AppLayout>
             <BreadCrumbs
-                links={links}
+                links={getLinks({ franchise, id: franchiseId })}
             />
             <main className="md:px-20 px-5 mt-10">
                 <div className="flex items-stretch justify-between md:flex-row flex-col">
@@ -166,7 +168,7 @@ const DetailWaralaba = () => {
                         />
                     </div>
                     <div className="md:min-w-[330px] mt-10 md:sticky md:top-24 fixed bottom-0 bg-white left-0 right-0 md:p-5 p-7 md:pb-7 md:rounded-xl pb-10 shadow">
-                        <Button onClick={() => { setVisible(true) }} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
+                        <Button onClick={createChatRoom} className="border-[1.5px] border-primary w-full text-primary">Hubungi Perusahaan</Button>
                         <Button onClick={() => { setVisiblePayment(true) }} className="border-[1.5px] border-primary bg-primary w-full text-white mt-3">Daftar Waralaba</Button>
                         <div className="flex items-center justify-between mt-3">
                             {
@@ -192,6 +194,9 @@ const DetailWaralaba = () => {
             <ChatDrawer
                 visible={visible}
                 setVisible={setVisible}
+                chatData={chatData}
+                setChatData={setChatData}
+                socket={socket}
             />
             <PaymentForm
                 visiblePayment={visiblePayment}

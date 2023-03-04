@@ -7,6 +7,12 @@ import PrivateRoute from "./components/routes/PrivateRoute";
 import AuthRoute from "./components/routes/AuthRoute";
 import ProfileCtx from "./context/ProfileContext";
 
+// socket
+import io from "socket.io-client";
+
+const host = import.meta.env.VITE_APP_SOCKETIO_HOST
+const socket = io(host);
+
 const Home = React.lazy(() => wait(1000).then(() => import('@/pages/Home')))
 const Waralaba = React.lazy(() => wait(1000).then(() => import('@/pages/Waralaba')))
 const Register = React.lazy(() => wait(1000).then(() => import('@/pages/Register')))
@@ -30,7 +36,7 @@ function App() {
                 <Route path="/waralaba" element={<Waralaba />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/saved" element={<Disimpan />} />
-                <Route path="/waralaba/:franchiseId" element={<DetailWaralaba />} />
+                <Route path="/waralaba/:franchiseId" element={<DetailWaralaba socket={socket} />} />
               </Route>
               <Route element={<AuthRoute />}>
                 <Route path="/register" element={<Register />} />
