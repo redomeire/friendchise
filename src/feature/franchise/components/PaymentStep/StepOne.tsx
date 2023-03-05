@@ -1,13 +1,21 @@
+import { useContext } from "react"
 import Button from "@/components/button/Button";
 import Input from "@/components/input/Input";
 import Typography from "@/components/typography/Typography";
 import { BsCalendar3 } from "react-icons/bs";
+
+import { TransactionContext } from "@/context/TransactionContext";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { dateFormatter } from "@/utils/dateFormatter";
 
 interface Props {
     setTab: React.Dispatch<React.SetStateAction<number>>
 }
 
 const StepOne = ({ setTab }: Props) => {
+    const { transaction, setTransaction } = useContext(TransactionContext)
+    const [profile] = useLocalStorage('profile', '')
+
     return (
         <div>
             <Typography thickness="bold" className="text-2xl">
@@ -19,6 +27,7 @@ const StepOne = ({ setTab }: Props) => {
                     type="text"
                     placeholder="Masukkan nama lengkap"
                     className="border-primary rounded-full w-full"
+                    defaultValue={profile.name}
                 />
             </div>
             <div className="mt-5">
@@ -27,6 +36,7 @@ const StepOne = ({ setTab }: Props) => {
                     type="text"
                     placeholder="Masukkan nama lengkap"
                     className="border-primary rounded-full w-full"
+                    defaultValue={profile.phone_number}
                 />
             </div>
             <div className="mt-5">
@@ -36,6 +46,7 @@ const StepOne = ({ setTab }: Props) => {
                     type="date"
                     placeholder="Masukkan nama lengkap"
                     className="border-primary rounded-full w-full"
+                    defaultValue={dateFormatter(profile.birth_date)}
                 />
             </div>
             <div className="mt-5">
@@ -44,6 +55,7 @@ const StepOne = ({ setTab }: Props) => {
                     type="text"
                     placeholder="pekerjaan anda"
                     className="border-primary rounded-full w-full"
+                    defaultValue={profile.job}
                 />
             </div>
             <Typography thickness="bold" className="text-2xl my-8">
@@ -55,6 +67,7 @@ const StepOne = ({ setTab }: Props) => {
                     type="text"
                     placeholder="alamat"
                     className="border-primary rounded-full w-full"
+                    defaultValue={profile.address}
                 />
             </div>
             <div className="mt-5">
@@ -74,13 +87,20 @@ const StepOne = ({ setTab }: Props) => {
                 />
             </div>
             <div className="mt-5">
-                <Typography className="mb-2">Lokasi Usaha</Typography>
+                <Typography className="mb-2">Tipe Usaha</Typography>
                 <div className="flex items-center justify-start ml-3">
                     <div>
                         <Input
                             type="radio"
                             placeholder="Masukkan provinsi"
                             className="border-primary rounded-full"
+                            name="tipe_usaha"
+                            defaultValue={'milik sendiri'}
+                            onChange={e => {
+                                setTransaction(prev => {
+                                    return { ...prev, tipe_usaha: e.target.value }
+                                })
+                            }}
                         />
                     </div>
                     <Typography className="ml-2">Milik sendiri</Typography>
@@ -91,9 +111,16 @@ const StepOne = ({ setTab }: Props) => {
                             type="radio"
                             placeholder="Masukkan provinsi"
                             className="border-primary rounded-full"
+                            name="tipe_usaha"
+                            defaultValue={'sewa'}
+                            onChange={e => {
+                                setTransaction(prev => {
+                                    return { ...prev, tipe_usaha: e.target.value }
+                                })
+                            }}
                         />
                     </div>
-                    <Typography className="ml-2">Milik sendiri</Typography>
+                    <Typography className="ml-2">Sewa</Typography>
                 </div>
             </div>
             <div className="mt-5">
@@ -102,8 +129,15 @@ const StepOne = ({ setTab }: Props) => {
                     <div>
                         <Input
                             type="radio"
+                            name="planning_operation"
                             placeholder="Masukkan provinsi"
                             className="border-primary rounded-full"
+                            defaultValue={'dikelola sendiri'}
+                            onChange={e => {
+                                setTransaction(prev => {
+                                    return { ...prev, planning_operation: e.target.value }
+                                })
+                            }}
                         />
                     </div>
                     <Typography className="ml-2">Dikelola sendiri</Typography>
@@ -112,8 +146,15 @@ const StepOne = ({ setTab }: Props) => {
                     <div>
                         <Input
                             type="radio"
+                            name="planning_operation"
                             placeholder="Masukkan provinsi"
                             className="border-primary rounded-full"
+                            defaultValue={'dikelola orang lain'}
+                            onChange={e => {
+                                setTransaction(prev => {
+                                    return { ...prev, planning_operation: e.target.value }
+                                })
+                            }}
                         />
                     </div>
                     <Typography className="ml-2">Dikelola orang lain</Typography>
@@ -125,8 +166,15 @@ const StepOne = ({ setTab }: Props) => {
                     <div>
                         <Input
                             type="radio"
+                            name="pengalaman_usaha"
                             placeholder="Masukkan provinsi"
                             className="border-primary rounded-full"
+                            defaultValue={'1'}
+                            onChange={e => {
+                                setTransaction(prev => {
+                                    return { ...prev, pengalaman_usaha: e.target.value }
+                                })
+                            }}
                         />
                     </div>
                     <Typography className="ml-2">Iya</Typography>
@@ -135,8 +183,15 @@ const StepOne = ({ setTab }: Props) => {
                     <div>
                         <Input
                             type="radio"
+                            name="pengalaman_usaha"
                             placeholder="Masukkan provinsi"
                             className="border-primary rounded-full"
+                            defaultValue={'0'}
+                            onChange={e => {
+                                setTransaction(prev => {
+                                    return { ...prev, pengalaman_usaha: e.target.value }
+                                })
+                            }}
                         />
                     </div>
                     <Typography className="ml-2">Tidak</Typography>
@@ -147,6 +202,11 @@ const StepOne = ({ setTab }: Props) => {
                         type="text"
                         placeholder="Masukkan provinsi"
                         className="border-primary rounded-full w-full"
+                        onChange={e => {
+                            setTransaction(prev => {
+                                return { ...prev, lokasi_usaha: e.target.value }
+                            })
+                        }}
                     />
                 </div>
             </div>

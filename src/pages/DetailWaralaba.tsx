@@ -127,7 +127,7 @@ const DetailWaralaba = ({ socket }: { socket: Socket }) => {
                             {franchise?.name}
                         </Typography>
                         <Typography className="mt-3"><span className="font-semibold">Gerai</span> {franchise?.outlet_count} | <MdLocationOn className="inline" size={20} />{franchise?.city_name}</Typography>
-                        <Typography thickness="bold" variant="heading3" className="mt-7">
+                        <Typography thickness="bold" className="mt-7 md:text-4xl text-xl">
                             {rupiahFormatter(franchise?.price!)}
                         </Typography>
                         <Typography thickness="bold" className="my-4">
@@ -201,6 +201,7 @@ const DetailWaralaba = ({ socket }: { socket: Socket }) => {
             <PaymentForm
                 visiblePayment={visiblePayment}
                 setVisiblePayment={setVisiblePayment}
+                total_price={rupiahFormatter(franchise.price!.toString())}
             />
         </AppLayout>
     );

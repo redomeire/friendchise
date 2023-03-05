@@ -9,6 +9,7 @@ import ProfileCtx from "./context/ProfileContext";
 
 // socket
 import io from "socket.io-client";
+import TransactionCtx from "./context/TransactionContext";
 
 const host = import.meta.env.VITE_APP_SOCKETIO_HOST
 const socket = io(host);
@@ -36,7 +37,11 @@ function App() {
                 <Route path="/waralaba" element={<Waralaba />} />
                 <Route path="/history" element={<History />} />
                 <Route path="/saved" element={<Disimpan />} />
-                <Route path="/waralaba/:franchiseId" element={<DetailWaralaba socket={socket} />} />
+                <Route path="/waralaba/:franchiseId" element={
+                  <TransactionCtx>
+                    <DetailWaralaba socket={socket} />
+                  </TransactionCtx>
+                } />
               </Route>
               <Route element={<AuthRoute />}>
                 <Route path="/register" element={<Register />} />

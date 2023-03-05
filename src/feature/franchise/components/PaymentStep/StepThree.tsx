@@ -1,11 +1,20 @@
 import Button from "@/components/button/Button";
 import Typography from "@/components/typography/Typography";
+import { TransactionContext } from "@/context/TransactionContext";
+import { payment } from "@/feature/payment/service/payment";
+import useLocalStorage from "@/hooks/useLocalStorage";
+
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
 
 interface Props {
     setTab: React.Dispatch<React.SetStateAction<number>>
 }
 
 const StepThree = ({ setTab }: Props) => {
+    const { transaction } = useContext(TransactionContext)
+    const [token] = useLocalStorage('token', '')
+
     return (
         <div>
             <Typography thickness="bold" className="text-2xl">
