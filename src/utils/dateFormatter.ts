@@ -1,4 +1,14 @@
-const dateFormatter = (date: string) => {
+const dateFormatter = (date: string, format?: string) => {    
+    if(format === null || format === undefined) {
+        return new Date(date).toLocaleDateString("Id", {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: 'numeric',
+        })
+    }
+
     let newDate = new Date(date)
 
     const getYear = newDate.toLocaleDateString('default', { year: 'numeric' })

@@ -13,7 +13,7 @@ interface Props {
 
 const FilterFranchise = ({ visible, setVisible }: Props) => {
     return (
-        <div className={`md:w-[30%] md:sticky md:block ${visible ? 'fixed' : 'hidden'} md:top-[100px] top-24 left-3 right-3 bg-white overflow-scroll h-[80vh]`}>
+        <div className={`lg:w-[30%] lg:sticky lg:block ${visible ? 'fixed' : 'hidden'} lg:top-[100px] top-24 left-3 right-3 bg-white overflow-scroll h-[80vh]`}>
             <div className="border rounded-xl border-gray-300 w-full">
                 <div className="p-5 border-b border-t rounded-t-xl border-b-gray-300 flex items-center justify-between sticky top-0 z-20 bg-white">
                     <Typography thickness="bold">Filter Pencarian</Typography>

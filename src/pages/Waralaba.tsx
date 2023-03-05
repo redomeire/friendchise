@@ -59,7 +59,7 @@ const Waralaba = () => {
 
     return (
         <AppLayout>
-            <form onSubmit={handleSearch} className="flex items-center justify-between md:px-20 px-10 md:flex-row flex-col">
+            <form onSubmit={handleSearch} className="flex items-center justify-between md:px-20 px-5 md:flex-row flex-col">
                 <div className="md:w-[30%] w-full md:mb-0 mb-5">
                     <Input
                         name="name"
@@ -97,12 +97,12 @@ const Waralaba = () => {
                     </Typography>
                 </Button>
             </form>
-            <div className="w-full flex items-start justify-between mt-10 md:px-20 px-10">
+            <div className="w-full flex items-start justify-between mt-10 md:px-20 px-5">
                 <FilterFranchise
                     visible={visible}
                     setVisible={setVisible}
                 />
-                <div className=" md:w-[70%] w-full md:ml-5 pb-4 flex justify-between flex-wrap">
+                <div className=" lg:w-[70%] w-full lg:ml-5 pb-4 flex justify-between flex-wrap">
                     {
                         franchises.map((franchise: Franchise, index) => {
                             return (

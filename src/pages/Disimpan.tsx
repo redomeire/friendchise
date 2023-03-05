@@ -32,7 +32,7 @@ const Disimpan = () => {
     return (
         <AppLayout>
             <div className="">
-                <div className="w-full px-16 flex items-start flex-wrap">
+                <div className="w-full lg:px-16 px-5 flex items-start flex-wrap">
                     {
                         franchises.length > 0 ?
                         franchises.map((franchise: Franchise, index) => {
