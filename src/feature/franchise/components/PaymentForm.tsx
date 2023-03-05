@@ -1,7 +1,7 @@
 import Button from "@/components/button/Button";
 import Typography from "@/components/typography/Typography";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BsArrowLeft, BsFillCheckCircleFill } from "react-icons/bs";
 import { payment } from "../utils/dummy";
 import StepOne from "./PaymentStep/StepOne";
@@ -9,19 +9,41 @@ import StepThree from "./PaymentStep/StepThree";
 import StepTwo from "./PaymentStep/StepTwo";
 
 import scrollbar from "@/components/styles/scrollbar.module.css";
+import { payment as pay } from "@/feature/payment/service/payment";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { useParams } from "react-router-dom";
+import { TransactionContext } from "@/context/TransactionContext";
 
 interface Props {
     visiblePayment: boolean,
-    setVisiblePayment: React.Dispatch<React.SetStateAction<boolean>>
+    setVisiblePayment: React.Dispatch<React.SetStateAction<boolean>>,
+    total_price?: string
 }
 
-const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
+const PaymentForm = ({ visiblePayment, setVisiblePayment, total_price }: Props) => {
     const [tab, setTab] = useState<number>(1)
-    const [passwordVisible, setPasswordVisible] = useState(false)
-    const [forms, setForms] = useState({
-        email: '',
-        password: ''
-    })
+    const [token] = useLocalStorage('token', '')
+    const { franchiseId } = useParams();
+    const { transaction } = useContext(TransactionContext)
+
+    const handlePayment = async (e: { preventDefault: () => void }) => {
+        e.preventDefault()
+
+        try {
+            const result = await pay(token.token,
+                {
+                    ...transaction,
+                    total_price: total_price!,
+                    company_id: franchiseId,
+                    service_price: '5000'
+                })
+
+            console.log(result);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <AnimatePresence>
@@ -34,6 +56,7 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment }: Props) => {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -200, opacity: 0 }}
                         transition={{ duration: 0.5 }}
+                        onSubmit={handlePayment}
                         className="bg-white rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 md:max-w-[60vw] w-[90%]">
 
                         <div className="p-7 bg-primary rounded-t-xl text-white flex items-center">

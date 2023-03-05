@@ -201,6 +201,7 @@ const DetailWaralaba = ({ socket }: { socket: Socket }) => {
             <PaymentForm
                 visiblePayment={visiblePayment}
                 setVisiblePayment={setVisiblePayment}
+                total_price={rupiahFormatter(franchise.price!.toString())}
             />
         </AppLayout>
     );
