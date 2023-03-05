@@ -88,7 +88,7 @@ const EditProfile = () => {
 
     return (
         <AppLayout>
-            <div className="md:px-32 px-10">
+            <div className="md:px-32 px-5">
                 <Button onClick={() => { navigate('/profile') }} className="flex items-center text-primary mb-5">
                     <BiArrowBack />
                     <Typography className="ml-3">
@@ -97,7 +97,7 @@ const EditProfile = () => {
                 </Button>
                 <div className="flex items-start w-full justify-between">
                     <ProfileSidebar />
-                    <div className="lg:w-[70%] w-full bg-white shadow-lg p-10 min-h-[400px] mt-5 md:ml-5">
+                    <div className="lg:w-[70%] w-full bg-white shadow-lg md:p-10 p-5 min-h-[400px] mt-5 md:ml-5">
                         <div className="profile-pic flex md:flex-row flex-col items-center mb-5 ">
                             {
                                 forms.profile_img !== "" ?
@@ -200,7 +200,7 @@ const EditProfile = () => {
                                         type="date"
                                         placeholder="Masukkan tanggal lahir"
                                         className="rounded-full w-full"
-                                        defaultValue={dateFormatter(user.birth_date)}
+                                        defaultValue={dateFormatter(user.birth_date, 'str')}
                                         onChange={(e) => {
                                             setForms(prev => {
                                                 return { ...prev, birth_date: e.target.value }

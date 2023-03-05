@@ -16,13 +16,13 @@ const Profile = () => {
 
     return (
         <AppLayout>
-            <Button onClick={() => { navigate(-1) }} className="md:px-32 px-10 flex items-center text-primary">
+            <Button onClick={() => { navigate(-1) }} className="md:px-32 px-5 flex items-center text-primary">
                 <BiArrowBack size={15} />
                 <Typography className="ml-3 text-[15px]">
                     Kembali
                 </Typography>
             </Button>
-            <div className="md:w-[800px] bg-white md:shadow-lg p-10 mx-auto min-h-[400px] mt-5">
+            <div className="md:w-[800px] bg-white md:shadow-lg md:p-10 p-5 mx-auto min-h-[400px] mt-5">
                 <div className="w-full flex justify-end">
                     <Button
                         onClick={() => { navigate('/profile/edit') }}
@@ -79,7 +79,7 @@ const Profile = () => {
                                 type="date"
                                 placeholder="Masukkan tanggal lahir"
                                 className="rounded-full w-full"
-                                defaultValue={dateFormatter(user.birth_date)}
+                                defaultValue={dateFormatter(user.birth_date, 'str')}
                             />
                         </div>
                     </div>

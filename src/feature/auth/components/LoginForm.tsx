@@ -37,7 +37,7 @@ const LoginForm = () => {
             window.localStorage.setItem('token', JSON.stringify(result?.data.data.token))
             window.localStorage.setItem('profile', JSON.stringify({
                 ...result?.data.data.profile,
-                birth_date: dateFormatter(result?.data.data.profile.birth_date)
+                birth_date: dateFormatter(result?.data.data.profile.birth_date, 'str')
             }))
 
             setTimeout(() => {
