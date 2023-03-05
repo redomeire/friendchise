@@ -11,7 +11,7 @@ import StepTwo from "./PaymentStep/StepTwo";
 import scrollbar from "@/components/styles/scrollbar.module.css";
 import { payment as pay } from "@/feature/payment/service/payment";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { TransactionContext } from "@/context/TransactionContext";
 
 interface Props {
@@ -25,6 +25,7 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment, total_price }: Props) 
     const [token] = useLocalStorage('token', '')
     const { franchiseId } = useParams();
     const { transaction } = useContext(TransactionContext)
+    const navigate = useNavigate()
 
     const handlePayment = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
@@ -39,6 +40,10 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment, total_price }: Props) 
                 })
 
             console.log(result);
+
+            setTimeout(() => {
+                navigate('/history')
+            }, 1200);
 
         } catch (error) {
             console.error(error);
