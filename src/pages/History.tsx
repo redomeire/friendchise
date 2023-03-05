@@ -10,11 +10,11 @@ import scrollbar from "@/components/styles/scrollbar.module.css";
 import { getHistory } from "@/feature/history/service/getHistory";
 import useLocalStorage from "@/hooks/useLocalStorage";
 
-import { History } from "@/models/dto/history";
+import { History as HistoryType } from "@/models/dto/history";
 
 const History = () => {
     const [tab, setTab] = useState<'semua' | 'berlangsung' | 'berhasil' | 'gagal' | string>('semua')
-    const [histories, setHistories] = useState<History[]>([])
+    const [histories, setHistories] = useState<HistoryType[]>([])
     const [token] = useLocalStorage('token', '')
 
     useEffect(() => {
