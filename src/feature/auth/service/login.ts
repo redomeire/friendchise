@@ -8,6 +8,11 @@ const login = async (email: string, password: string) => {
             email,
             password
         })
+        .then((result) => {
+            return result
+        }).catch((err) => {
+            return err 
+        });        
 
         return result
     } catch (error) {

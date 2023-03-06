@@ -14,6 +14,11 @@ const register = async ({ email, password, name, phone, repeat_password, usernam
             repeat_password,
             username
         })
+        .then((result) => {
+            return result
+        }).catch((err) => {
+            return err
+        });
 
         return result
     } catch (error) {
