@@ -15,6 +15,8 @@ import { getCities } from "@/feature/franchise/service/getCities";
 import { City } from "@/models/dto/city";
 import { useSearchParams } from "react-router-dom";
 
+import Kosong from "@/assets/saved/Kosong.png";
+
 const Waralaba = () => {
     const [visible, setVisible] = useState(false)
     const [token] = useLocalStorage('token', '')
@@ -33,7 +35,7 @@ const Waralaba = () => {
             setFranchises(result?.data.data)
 
             console.log(result);
-            
+
 
         } catch (error) {
             console.error(error)
@@ -104,13 +106,19 @@ const Waralaba = () => {
                 />
                 <div className=" lg:w-[70%] w-full lg:ml-5 pb-4 flex justify-between flex-wrap">
                     {
-                        franchises.map((franchise: Franchise, index) => {
-                            return (
-                                <CardFranchise
-                                    franchise={franchise}
-                                    key={index} />
-                            )
-                        })
+                        franchises.length > 0 ?
+                            franchises.map((franchise: Franchise, index) => {
+                                return (
+                                    <CardFranchise
+                                        franchise={franchise}
+                                        key={index} />
+                                )
+                            })
+                            :
+                            <div className="flex items-center flex-col justify-center w-full min-h-[300px]">
+                                <img src={Kosong} className="md:w-[300px] w-[200px] mt-10" />
+                                <Typography className="md:text-xl text-lg mt-3 text-gray-800 text-center">Hmm... FriendChise bakal segera buka <br/> di kota kamu. Tungguin yak</Typography>
+                            </div>
                     }
                 </div>
             </div>

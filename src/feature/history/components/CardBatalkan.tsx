@@ -1,13 +1,39 @@
 import Button from "@/components/button/Button"
 import Input from "@/components/input/Input"
 import Typography from "@/components/typography/Typography"
+import useLocalStorage from "@/hooks/useLocalStorage"
 import { AnimatePresence, motion } from "framer-motion"
+import { useState } from "react"
 import { BiArrowBack } from "react-icons/bi"
 import { FcGoogle } from "react-icons/fc"
 import { GrClose } from "react-icons/gr"
 import { Link } from "react-router-dom"
+import { abortTransaction } from "../service/abortTransaction"
 
-const CardBatalkan = ({ visible, setVisible }: { visible: boolean, setVisible: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const CardBatalkan = ({ visible, setVisible, id }: { visible: boolean, setVisible: React.Dispatch<React.SetStateAction<boolean>>, id: string | number }) => {
+    const [token] = useLocalStorage('token', '')
+    const [loading, setLoading] = useState(false)
+
+    const cancelTransaction = async (e: { preventDefault: () => void }) => {
+        e.preventDefault()
+
+        setLoading(true)
+
+        try {
+            const result = await abortTransaction(token.token, id)
+
+            console.log(result);
+
+            setTimeout(() => {
+                setLoading(false)
+                window.location.reload()
+            }, 1000)
+        } catch (error) {
+            console.error(error);
+            setLoading(false)
+        }
+    }
+
     return (
         <AnimatePresence>
             {
@@ -19,6 +45,7 @@ const CardBatalkan = ({ visible, setVisible }: { visible: boolean, setVisible: R
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -200, opacity: 0 }}
                         transition={{ duration: 0.5 }}
+                        onSubmit={cancelTransaction}
                         className="bg-white p-7 rounded-xl min-h-[300px] md:w-[500px] w-[90%] shadow-xl z-50 ">
                         <div className="flex items-center">
                             <Typography
@@ -66,8 +93,8 @@ const CardBatalkan = ({ visible, setVisible }: { visible: boolean, setVisible: R
                             Pembatalan membutuhkan persetujuan penjual karena pesanan Anda sudah diproses. <span className="text-primary font-[600]">Lihat S&K</span>
                         </div>
                         <Button
-                            type="button"
-                            onClick={() => { window.location.reload() }}
+                            loading={loading}
+                            type="submit"
                             className="w-full bg-primary-dark text-white mt-7"
                         >Ajukan pembatalan</Button>
                     </motion.form>

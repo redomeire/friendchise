@@ -8,6 +8,8 @@ import { Franchise } from "@/models/dto/franchise";
 import { useState, useEffect } from "react"
 
 import Kosong from "@/assets/saved/Kosong.png";
+import Button from "@/components/button/Button";
+import { Link } from "react-router-dom";
 
 const Disimpan = () => {
     const [franchises, setFranchises] = useState<Franchise[]>([])
@@ -37,18 +39,25 @@ const Disimpan = () => {
                 <div className="w-full lg:px-16 px-5 flex items-start flex-wrap">
                     {
                         franchises.length > 0 ?
-                        franchises.map((franchise: Franchise, index) => {
-                            return (
-                                <CardFranchise
-                                    key={index}
-                                    franchise={franchise} />
-                            )
-                        })
-                        :
-                        <div className="flex items-center flex-col justify-center w-full min-h-[300px]">
-                            <img src={Kosong} className="md:w-[300px] w-[200px] mt-10"/>
-                            <Typography className="md:text-xl text-lg mt-3 text-gray-800 text-center">Oops... Sepertinya anda <br/> belum menyimpan franchise</Typography>
-                        </div>
+                            franchises.map((franchise: Franchise, index) => {
+                                return (
+                                    <CardFranchise
+                                        key={index}
+                                        franchise={franchise} />
+                                )
+                            })
+                            :
+                            <div className="flex items-center flex-col justify-center w-full min-h-[300px]">
+                                <img src={Kosong} className="md:w-[300px] w-[200px]" />
+                                <Typography className="md:text-xl text-lg mt-3 text-gray-800 text-center">Oops... Sepertinya anda <br /> belum menyimpan franchise</Typography>
+                                <Link to="/waralaba?name=&city_id=">
+                                    <Button className="bg-primary-dark text-white min-w-[200px] mt-6">
+                                        <Typography>
+                                            Eksplor Waralaba
+                                        </Typography>
+                                    </Button>
+                                </Link>
+                            </div>
                     }
                 </div>
             </div>

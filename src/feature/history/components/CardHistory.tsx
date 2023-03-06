@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import Badge from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
 import CardBatalkan from "./CardBatalkan";
+import { History } from "@/models/dto/history";
 
 interface Props {
     outlet_name?: string,
@@ -16,10 +17,11 @@ interface Props {
     status?: string,
     img_url?: string,
     total_price?: string,
-    company_id?: string | number
+    company_id?: string | number,
+    history: History
 }
 
-const CardHistory = ({ outlet_name, company_name, created_at, status, img_url, total_price, company_id }: Props) => {
+const CardHistory = ({ outlet_name, company_name, created_at, status, img_url, total_price, company_id, history }: Props) => {
     const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     const [declinePayment, setDeclinePayment] = useState(false);
@@ -85,6 +87,7 @@ const CardHistory = ({ outlet_name, company_name, created_at, status, img_url, t
                 </div>
             </div>
             <CardBatalkan
+                id={history.id!}
                 visible={declinePayment}
                 setVisible={setDeclinePayment}
             />

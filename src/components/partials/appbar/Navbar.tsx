@@ -23,6 +23,7 @@ const Navbar = () => {
     const [openProfile, setOpenProfile] = useState(false)
     const [navbarResponsive, setNavbarResponsive] = useState(false);
     const { setVisible } = useContext(LoginContext);
+    const [shadowed, setShadowed] = useState(false);
 
     const navbarDatas = [
         {
@@ -39,9 +40,16 @@ const Navbar = () => {
         }
     ]
 
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200)
+            setShadowed(true)
+
+        else setShadowed(false)
+    })
+
     return (
         <>
-            <nav className={` transition duration-200 fixed top-0 z-20 w-full flex items-center justify-between p-5 md:px-20 bg-white ${style.nav} md:flex-row flex-col `}>
+            <nav className={` transition duration-200 fixed top-0 z-20 w-full flex items-center justify-between p-5 md:px-20 bg-white ${shadowed ? style.nav : ''} md:flex-row flex-col `}>
                 <div className="flex md:items-center md:flex-row flex-col md:w-fit w-full">
                     <div className="flex items-center justify-between">
                         <a href="/">

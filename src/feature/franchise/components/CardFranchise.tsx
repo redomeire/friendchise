@@ -44,7 +44,7 @@ const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
     }
 
     return (
-        <div className="lg:mx-3 md:mb-7 mb-3 hover:shadow-md cursor-pointer transition duration-200 p-5 rounded-xl border border-gray-400 bg-white lg:min-w-[350px] min-w-[250px] min-h-[300px] lg:w-[300px] w-full">
+        <div className="lg:mx-3 md:mb-7 mb-3 hover:shadow-md cursor-pointer transition duration-200 p-5 rounded-xl border border-gray-400 bg-white lg:min-w-[350px] min-w-[250px] min-h-[300px] lg:w-[300px] w-full hover:-translate-y-2">
             <div onClick={() => { navigate(`/waralaba/${franchise.id}`) }} className="bg-cover bg-center min-h-[150px] w-full rounded-xl hover:opacity-80 transition duration-200" style={{ backgroundImage: `url(${franchise.image_thumbnail})` }} />
             <div className="flex items-start mt-3 justify-between">
                 <div>

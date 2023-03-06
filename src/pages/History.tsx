@@ -47,8 +47,8 @@ const History = () => {
                         {
                             tabs.map((item, index) => {
                                 return (
-                                    <Button onClick={() => { setTab(item.name) }} key={index} className={`${item.name === tab ? 'bg-primary-darker text-white border-primary-darker' : 'text-gray-600 border-gray-600'} border-[1.5px] hover:bg-primary-darker hover:text-white hover:border-primary-darker transition duration-200 mx-3 min-w-[100px] ${tab}`}>
-                                        <Typography className="text-sm p-1">
+                                    <Button onClick={() => { setTab(item.name) }} key={index} className={`${item.name === tab ? 'bg-primary-darker text-white border-primary-darker' : 'text-[#344054] bg-[#EAECF0]'} border-[1.5px] hover:bg-primary-darker hover:text-white hover:border-primary-darker transition duration-200 mx-3 min-w-[100px] ${tab}`}>
+                                        <Typography className="text-sm p-1 font-semibold">
                                             {item.name}
                                         </Typography>
                                     </Button>
@@ -74,6 +74,7 @@ const History = () => {
                                     created_at={history.created_at}
                                     img_url={history.image_thumbnail}
                                     company_id={history.company_id}
+                                    history={history}
                                 />
                             )
                         })

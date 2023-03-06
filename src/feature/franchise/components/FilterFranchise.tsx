@@ -24,8 +24,8 @@ const FilterFranchise = ({ visible, setVisible }: Props) => {
                 <div className="p-5 border-b border-b-gray-300">
                     <Typography thickness="bold">Tampilkan Berdasarkan</Typography>
                     <div className="flex items-center mt-3">
-                        <Button className="bg-[#D3F8DF] text-primary-dark border-primary border-[1.5px]">Paling Sesuai</Button>
-                        <Button className="bg-[#EAECF0] border-[1.5px] border-gray-400 ml-3">Paling Baru</Button>
+                        <Button className="bg-[#D3F8DF] text-primary-dark border-transparent border-[1.5px]">Paling Sesuai</Button>
+                        <Button className="bg-[#EAECF0] border-[1.5px] border-transparent ml-3">Paling Baru</Button>
                     </div>
                 </div>
                 <div className="p-5 border-b border-b-gray-300">
