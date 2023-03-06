@@ -4,7 +4,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import Typography from "@/components/typography/Typography";
 
 // assets
-import Logo from "@/assets/logo_friendchise_green.svg";
+import Logo from "@/assets/logo_friendchise.png";
 import style from "@/components/styles/navbar.module.css";
 import { useContext, useState } from "react";
 import { LoginContext } from "@/context/LoginContext";
@@ -46,7 +46,7 @@ const Navbar = () => {
                     <div className="flex items-center justify-between">
                         <a href="/">
                             <div className="flex items-center">
-                                <img src={Logo} alt="the movie db" className="w-[40px]" />
+                                <img src={Logo} alt="the movie db" className="w-[50px] text-white" />
                                 <Typography className="ml-5 text-2xl md:hidden" thickness="bold">
                                     FriendChise
                                 </Typography>

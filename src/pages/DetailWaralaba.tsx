@@ -197,6 +197,7 @@ const DetailWaralaba = ({ socket }: { socket: Socket }) => {
                 chatData={chatData}
                 setChatData={setChatData}
                 socket={socket}
+                franchise={franchise}
             />
             <PaymentForm
                 visiblePayment={visiblePayment}

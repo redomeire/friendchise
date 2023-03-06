@@ -15,16 +15,18 @@ import { storeMessage } from "@/feature/chat/service/storeMessage";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { getMessages } from "@/feature/chat/service/getMessages";
 import { Message } from "@/models/dto/message";
+import { Franchise } from "@/models/dto/franchise";
 
 interface Props {
     visible: boolean,
     setVisible: React.Dispatch<React.SetStateAction<boolean>>
     socket: Socket,
     chatData: { id: string | number },
-    setChatData: React.Dispatch<React.SetStateAction<{ id: number }>>
+    setChatData: React.Dispatch<React.SetStateAction<{ id: number }>>,
+    franchise: Franchise
 }
 
-const ChatDrawer = ({ visible, setVisible, socket, chatData, setChatData }: Props) => {
+const ChatDrawer = ({ visible, setVisible, socket, chatData, setChatData, franchise }: Props) => {
     const [messages, setMessages] = useState<Message>([])
     const [value, setValue] = useState('')
     const [token] = useLocalStorage('token', '')
@@ -94,9 +96,9 @@ const ChatDrawer = ({ visible, setVisible, socket, chatData, setChatData }: Prop
                             <div className="flex items-center">
                                 <BsArrowLeft onClick={() => { setVisible(false) }} size={25} />
                                 <div className="flex items-center ml-3">
-                                    <div className="bg-cover bg-center w-[45px] h-[45px] rounded-full" style={{ backgroundImage: `url(${'https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'})` }} />
+                                    <div className="bg-cover bg-center w-[45px] h-[45px] rounded-full" style={{ backgroundImage: `url(${franchise.image_thumbnail})` }} />
                                     <div className="ml-5">
-                                        <Typography thickness="bold" className="text-[17px]">Ropi</Typography>
+                                        <Typography thickness="bold" className="text-[17px]">{franchise.outlet_name}</Typography>
                                         <Typography className="text-[15px]">Online</Typography>
                                     </div>
                                 </div>

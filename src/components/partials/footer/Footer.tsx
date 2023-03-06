@@ -1,4 +1,4 @@
-import Logo from "@/assets/logo_friendchise.svg";
+import Logo from "@/assets/logo_friendchise_white.png";
 import Button from "@/components/button/Button";
 import Typography from "@/components/typography/Typography";
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="bg-primary md:py-10 py-5 md:px-20 px-5 text-white flex items-center justify-between md:flex-row flex-col">
             <div className="md:w-[40%]">
-                <img src={Logo} className="w-[70px]" />
+                <img src={Logo} className="w-[60px]" />
                 <Typography className="text-lg my-5 font-semibold">friendchise indonesia</Typography>
                 <Typography className="font-normal text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, doloribus ut aspernatur in placeat officiis a voluptatibus nemo illum ipsum praesentium incidunt vitae sint nobis! Provident, sed aut. Eveniet, tenetur.</Typography>
                 <div className="flex items-center mt-5">

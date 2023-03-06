@@ -7,6 +7,8 @@ import { Franchise } from "@/models/dto/franchise";
 
 import { useState, useEffect } from "react"
 
+import Kosong from "@/assets/saved/Kosong.png";
+
 const Disimpan = () => {
     const [franchises, setFranchises] = useState<Franchise[]>([])
     const [token] = useLocalStorage('token', '')
@@ -43,8 +45,9 @@ const Disimpan = () => {
                             )
                         })
                         :
-                        <div className="flex items-center justify-center w-full min-h-[300px]">
-                            <Typography thickness="bold" className="text-2xl">Oops... Sepertinya anda belum menyimpan franchise</Typography>
+                        <div className="flex items-center flex-col justify-center w-full min-h-[300px]">
+                            <img src={Kosong} className="md:w-[300px] w-[200px] mt-10"/>
+                            <Typography className="md:text-xl text-lg mt-3 text-gray-800 text-center">Oops... Sepertinya anda <br/> belum menyimpan franchise</Typography>
                         </div>
                     }
                 </div>
