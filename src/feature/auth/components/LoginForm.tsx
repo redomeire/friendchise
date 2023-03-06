@@ -14,6 +14,7 @@ import { LoginContext } from "@/context/LoginContext";
 import { AnimatePresence, motion } from "framer-motion";
 import { createAxiosInstance } from "@/feature/api/AxiosInstance";
 import { dateFormatter } from "@/utils/dateFormatter";
+import ErrorText from "@/components/error/ErrorText";
 
 const LoginForm = () => {
     const [passwordVisible, setPasswordVisible] = useState(false)
@@ -23,6 +24,7 @@ const LoginForm = () => {
     })
     const { setVisible, visible } = useContext(LoginContext)
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<any>()
 
     const handleLogin = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
@@ -32,7 +34,11 @@ const LoginForm = () => {
         try {
             const result = await login(email, password)
 
-            console.log(result);
+            if(result?.response?.data) {
+                setError(result.response.data.error)
+                setIsLoading(false)
+                return
+            }
 
             window.localStorage.setItem('token', JSON.stringify(result?.data.data.token))
             window.localStorage.setItem('profile', JSON.stringify({
@@ -41,10 +47,11 @@ const LoginForm = () => {
             }))
 
             setTimeout(() => {
-                if(result) 
+                if (result)
                     window.location.reload()
             }, 1000);
-        } catch (error) {
+
+        } catch (error: any) {
             console.error(error);
             setIsLoading(false)
         }
@@ -61,7 +68,7 @@ const LoginForm = () => {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -200, opacity: 0 }}
                         transition={{ duration: 0.5 }}
-                        onSubmit={handleLogin} className="bg-white p-7 rounded-xl min-h-[300px] md:min-w-[400px] shadow-xl z-50 ">
+                        onSubmit={handleLogin} className="bg-white p-7 rounded-xl min-h-[300px] md:min-w-[400px] md:w-[400px] w-[90%] shadow-xl z-50 ">
                         <div className="flex items-center">
                             <Button>
                                 <BiArrowBack
@@ -80,6 +87,11 @@ const LoginForm = () => {
                             <FcGoogle size={30} />
                             <Typography className="ml-4">Masuk dengan google</Typography>
                         </Button>
+                        {
+                            error &&
+                            <ErrorText className="mt-5">{ error?.responseText }</ErrorText>
+                        }
+                        
                         <Typography className="mt-5 mb-4" thickness="bold">Email</Typography>
                         <Input
                             type="email"

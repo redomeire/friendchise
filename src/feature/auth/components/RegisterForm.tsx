@@ -1,9 +1,9 @@
 import Button from "@/components/button/Button";
+import ErrorText from "@/components/error/ErrorText";
 import Input from "@/components/input/Input";
 import Typography from "@/components/typography/Typography";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { register } from "../service/register";
 
@@ -19,6 +19,7 @@ const RegisterForm = () => {
         repeat_password: ''
     })
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<any>()
     const navigate = useNavigate();
 
     const handleRegister = async (e: { preventDefault: () => void }) => {
@@ -28,7 +29,10 @@ const RegisterForm = () => {
         try {
             const result = await register(forms)
 
-            console.log(result);
+            if(result?.response?.data) {
+                setError(result?.response?.data)
+                return
+            }
 
             setTimeout(() => {
                navigate('/') 
@@ -41,6 +45,9 @@ const RegisterForm = () => {
 
     return (
         <div className="md:w-[40%] w-full">
+            {
+                error && <ErrorText>{error.message}</ErrorText>
+            }
             <form onSubmit={handleRegister}>
                 <div className="my-5">
                     <Typography className="text-[15px]" thickness="bold">

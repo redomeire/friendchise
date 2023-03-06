@@ -18,6 +18,7 @@ import { deleteProfilePic } from "@/feature/profile/service/deleteProfilePic";
 import { profileTab } from "@/feature/profile/utils/dummy";
 
 import scrollbar from "@/components/styles/scrollbar.module.css";
+import { FiEdit3 } from "react-icons/fi";
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -28,8 +29,16 @@ const EditProfile = () => {
     const [profile, setProfile] = useLocalStorage('profile', '');
     const [tempUrl, setTempUrl] = useState<any>(user.profile_img);
     const [tab, setTab] = useState('Ubah Profil')
+    const [loading, setLoading] = useState({
+        upload_img: false,
+        update_profile: false
+    })
 
     const handleUpdate = async () => {
+        setLoading(prev => {
+            return {...prev, update_profile: true}
+        })
+
         try {
             const result = await editProfile(token.token, forms)
 
@@ -37,7 +46,7 @@ const EditProfile = () => {
 
             window.localStorage.setItem('profile', JSON.stringify({
                 ...result?.data.data,
-                birth_date: dateFormatter(result?.data.data.birth_date)
+                birth_date: dateFormatter(result?.data.data.birth_date, '')
             }))
 
             setTimeout(() => {
@@ -46,10 +55,16 @@ const EditProfile = () => {
 
         } catch (error) {
             console.error(error);
+            setLoading(prev => {
+                return {...prev, update_profile: false}
+            })
         }
     }
 
     const updateProfilePic = async () => {
+        setLoading(prev => {
+            return {...prev, upload_img: true}
+        })
         try {
             const result = await updateProfilePage(img, token.token)
 
@@ -59,6 +74,9 @@ const EditProfile = () => {
                 window.location.reload()
             }, 1000);
         } catch (error) {
+            setLoading(prev => {
+                return {...prev, upload_img: false}
+            })
             console.error(error);
         }
     }
@@ -102,6 +120,9 @@ const EditProfile = () => {
                             {
                                 forms.profile_img !== "" ?
                                     <div className="relative bg-cover bg-center rounded-full w-[90px] h-[90px] md:mb-0 mb-5" style={{ backgroundImage: `url(${tempUrl})` }}>
+                                        <div className="w-fit absolute right-0 bottom-0 bg-white rounded-full p-2 shadow-lg">
+                                            <FiEdit3 className="text-black" size={17} />
+                                        </div>
                                         <div className="absolute left-0 right-0 bottom-0 top-0 z-30 cursor-pointer">
                                             <Input
                                                 onChange={(e) => {
@@ -120,6 +141,9 @@ const EditProfile = () => {
                                     </div>
                                     :
                                     <div className={`relative bg-cover bg-center rounded-full w-[90px] h-[90px] md:text-2xl text-white flex items-center justify-center bg-primary`} style={{ backgroundImage: `url(${tempUrl})` }}>
+                                        <div className="w-fit absolute right-0 bottom-0 bg-white rounded-full p-2 shadow-lg">
+                                            <FiEdit3 className="text-black" size={17} />
+                                        </div>
                                         <Button className=" w-[90px] h-[90px] md:text-2xl text-white flex items-center justify-center">
                                             {
                                                 user.username && !tempUrl &&
@@ -138,12 +162,12 @@ const EditProfile = () => {
                                                             }
                                                         }
                                                     }}
-                                                    type="file" className="opacity-0 cursor-pointer w-full " />
+                                                    type="file" className="h-[90px] opacity-0 cursor-pointer w-full bg-red-200 " />
                                             </div>
                                         </Button>
                                     </div>
                             }
-                            <Button onClick={updateProfilePic} className="relative mb-3 md:mb-0 cursor-pointer border-[2px] border-primary-dark text-primary-dark font-semibold hover:bg-primary-dark hover:text-white md:ml-7 min-w-[150px]">
+                            <Button loading={loading.upload_img} onClick={updateProfilePic} className="relative mb-3 md:mb-0 cursor-pointer border-[2px] border-primary-dark font-semibold bg-primary-dark text-white md:ml-7 min-w-[150px] mt-5 md:mt-0">
                                 <Typography className="text-sm cursor-pointer">
                                     Unggah foto baru
                                 </Typography>
@@ -268,7 +292,7 @@ const EditProfile = () => {
                             />
                         </div>
                         <div className="w-full items-center justify-center mt-10">
-                            <Button onClick={handleUpdate} className="mx-auto bg-primary-dark text-white text-sm">
+                            <Button loading={loading.update_profile} onClick={handleUpdate} className="mx-auto bg-primary-dark text-white text-sm border-[2px]">
                                 <Typography className="p-1">
                                     Simpan perubahan
                                 </Typography>
