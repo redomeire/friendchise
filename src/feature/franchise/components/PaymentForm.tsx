@@ -13,6 +13,8 @@ import { payment as pay } from "@/feature/payment/service/payment";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { useNavigate, useParams } from "react-router-dom";
 import { TransactionContext } from "@/context/TransactionContext";
+import PageLoading from "@/components/loader/PageLoading";
+import PaymentLoader from "@/components/loader/PaymentLoader";
 
 interface Props {
     visiblePayment: boolean,
@@ -26,9 +28,12 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment, total_price }: Props) 
     const { franchiseId } = useParams();
     const { transaction } = useContext(TransactionContext)
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false);
 
     const handlePayment = async (e: { preventDefault: () => void }) => {
         e.preventDefault()
+        setIsLoading(true)
+        setVisiblePayment(false)
 
         try {
             const result = await pay(token.token,
@@ -47,11 +52,15 @@ const PaymentForm = ({ visiblePayment, setVisiblePayment, total_price }: Props) 
 
         } catch (error) {
             console.error(error);
+            setIsLoading(false)
         }
     }
 
     return (
         <AnimatePresence>
+            {
+                isLoading && <PaymentLoader/>
+            }
             {
                 visiblePayment &&
                 <div className="w-full z-40 fixed flex top-0 left-0 right-0 bottom-0 items-center justify-center">
