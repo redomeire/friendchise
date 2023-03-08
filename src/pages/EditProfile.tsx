@@ -19,6 +19,7 @@ import { profileTab } from "@/feature/profile/utils/dummy";
 
 import scrollbar from "@/components/styles/scrollbar.module.css";
 import { FiEdit3 } from "react-icons/fi";
+import PaymentLoader from "@/components/loader/PaymentLoader";
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -31,7 +32,8 @@ const EditProfile = () => {
     const [tab, setTab] = useState('Ubah Profil')
     const [loading, setLoading] = useState({
         upload_img: false,
-        update_profile: false
+        update_profile: false,
+        delete_profile: false
     })
 
     const handleUpdate = async () => {
@@ -82,6 +84,10 @@ const EditProfile = () => {
     }
 
     const deletePic = async () => {
+        setLoading(prev => {
+            return { ...prev, delete_profile: true }
+        })
+
         try {
             const result = await deleteProfilePic(token.token);
 
@@ -94,6 +100,9 @@ const EditProfile = () => {
             }, 1500);
         } catch (error) {
             console.error(error)
+            setLoading(prev => {
+                return { ...prev, delete_profile: false }
+            })
         }
     }
 
@@ -106,6 +115,9 @@ const EditProfile = () => {
 
     return (
         <AppLayout>
+            {
+                loading.delete_profile && <PaymentLoader/>
+            }
             <div className="md:px-32 px-5">
                 <Button onClick={() => { navigate('/profile') }} className="flex items-center text-primary mb-5">
                     <BiArrowBack />
@@ -118,7 +130,7 @@ const EditProfile = () => {
                     <div className="lg:w-[70%] w-full bg-white shadow-lg md:p-10 p-5 min-h-[400px] mt-5 md:ml-5">
                         <div className="profile-pic flex md:flex-row flex-col items-center mb-5 ">
                             {
-                                forms.profile_img !== "" ?
+                                forms.profile_img !== "" && forms.profile_img !== null ?
                                     <div className="relative bg-cover bg-center rounded-full w-[90px] h-[90px] md:mb-0 mb-5" style={{ backgroundImage: `url(${tempUrl})` }}>
                                         <div className="w-fit absolute right-0 bottom-0 bg-white rounded-full p-2 shadow-lg">
                                             <FiEdit3 className="text-black" size={17} />
@@ -220,7 +232,6 @@ const EditProfile = () => {
                                 <div className="mt-5">
                                     <Typography className="mb-2 text-sm font-semibold">Tanggal Lahir</Typography>
                                     <Input
-                                        beginningIcon={<BsCalendar3 />}
                                         type="date"
                                         placeholder="Masukkan tanggal lahir"
                                         className="rounded-full w-full"

@@ -31,17 +31,19 @@ const Footer = () => {
                 <div className="xl:ml-10 md:w-[30%] sm:mb-0 mb-5 sm:w-fit w-full">
                     <Typography className="font-semibold text-lg mb-3">Friendchise</Typography>
                     <ul>
-                        <li className="my-4 text-sm">Riwayat</li>
-                        <li className="my-4 text-sm">Riwayat</li>
-                        <li className="my-4 text-sm">Profil</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">Waralaba</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">Riwayat</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">Disimpan</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">Profil</li>
                     </ul>
                 </div>
                 <div className="sm:mx-10 sm:w-fit w-full sm:mb-0 mb-5">
                     <Typography className="font-semibold text-lg mb-3">Bantuan</Typography>
                     <ul>
-                        <li className="my-4 text-sm">Riwayat</li>
-                        <li className="my-4 text-sm">Riwayat</li>
-                        <li className="my-4 text-sm">Profil</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">Pesan</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">FAQ</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline">Disimpan</li>
+                        <li className="my-4 text-sm cursor-pointer hover:underline whitespace-nowrap">Kebijakan privasi</li>
                     </ul>
                 </div>
                 <div className="md:ml-5 sm:w-[30%]">

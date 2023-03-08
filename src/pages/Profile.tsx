@@ -75,7 +75,6 @@ const Profile = () => {
                             <Typography className="mb-2 text-sm font-semibold">Tanggal Lahir</Typography>
                             <Input
                                 disabled
-                                beginningIcon={<BsCalendar3 />}
                                 type="date"
                                 placeholder="Masukkan tanggal lahir"
                                 className="rounded-full w-full"

@@ -28,7 +28,7 @@ const Testimony = () => {
                 <Typography className="font-semibold text-3xl">
                     kata mereka
                 </Typography>
-                
+
             </div>
             <div className="mt-10 flex justify-between items-start">
                 <Swiper
@@ -50,12 +50,12 @@ const Testimony = () => {
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
                                 <div className="ml-5">
-                                    <Typography className="font-bold">Sulistini</Typography>
-                                    <Typography className="text-gray-400 text-sm">Irfan</Typography>
+                                    <Typography className="font-bold">Tuti Setiawati</Typography>
+                                    <Typography className="text-gray-400 text-sm">Ibu Rumah Tangga</Typography>
                                 </div>
                             </div>
                             <Typography className="text-sm mt-5">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. In obcaecati voluptatibus, ea nihil eius blanditiis. Consequuntur autem ad provident exercitationem temporibus earum velit magni delectus iste! Sapiente error deserunt illo necessitatibus nisi magni, fugit odio voluptatum aspernatur corrupti corporis facere? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, aliquid!
+                                Saya sangat senang bergabung dengan Friendchise. Sistem kerja sama yang diberikan sangat transparan dan mudah dipahami. Saya bisa mengembangkan bisnis saya sendiri. Waralaba yang ditawarkan juga memiliki kualitas yang baik dan diminati oleh pelanggan.
                             </Typography>
                         </div>
                     </SwiperSlide>
@@ -65,12 +65,12 @@ const Testimony = () => {
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
                                 <div className="ml-5">
-                                    <Typography className="font-bold">Sulistianto</Typography>
+                                    <Typography className="font-bold">Gilang Khrismahaq</Typography>
                                     <Typography className="text-gray-400 text-sm">Mahasiswa</Typography>
                                 </div>
                             </div>
                             <Typography className="text-sm mt-5">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel accusantium suscipit quod praesentium perspiciatis tempore molestiae, cum, vero nam excepturi alias facere, nesciunt officia animi corporis temporibus ex? Repellendus voluptates repellat aut temporibus hic perspiciatis vero quaerat fugit labore voluptate?
+                                Saya dan teman-teman saya memutuskan untuk menjalin kerja sama waralaba dengan perusahaan franchise di Indonesia bersama Friendchise karena mereka memberikan fasilitas yang lengkap untuk memulai bisnis kami. Kami juga mendapatkan waralaba yang terbukti laris di pasaran dan dukungan pemasaran yang efektif.
                             </Typography>
                         </div>
                     </SwiperSlide>
@@ -80,12 +80,12 @@ const Testimony = () => {
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
                                 <div className="ml-5">
-                                    <Typography className="font-bold">Sulistianto</Typography>
+                                    <Typography className="font-bold">Redomeire</Typography>
                                     <Typography className="text-gray-400 text-sm">Mahasiswa</Typography>
                                 </div>
                             </div>
                             <Typography className="text-sm mt-5">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel accusantium suscipit quod praesentium perspiciatis tempore molestiae, cum, vero nam excepturi alias facere, nesciunt officia animi corporis temporibus ex? Repellendus voluptates repellat aut temporibus hic perspiciatis vero quaerat fugit labore voluptate?
+                                Saya merasa sangat terbantu dengan adanya kerja sama waralaba bersama Friendchise. Saya bisa memulai bisnis sendiri tanpa harus memikirkan produk dan branding karena semuanya sudah disiapkan oleh perusahaan franchisenya. Dukungan dari tim Friendchise juga sangat membantu dalam mengembangkan bisnis.
                             </Typography>
                         </div>
                     </SwiperSlide>
@@ -95,12 +95,27 @@ const Testimony = () => {
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
                                 <div className="ml-5">
-                                    <Typography className="font-bold">Sulistianto</Typography>
-                                    <Typography className="text-gray-400 text-sm">Mahasiswa</Typography>
+                                    <Typography className="font-bold">Naufal Ammar Rauf</Typography>
+                                    <Typography className="text-gray-400 text-sm">Freelancer</Typography>
                                 </div>
                             </div>
                             <Typography className="text-sm mt-5">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel accusantium suscipit quod praesentium perspiciatis tempore molestiae, cum, vero nam excepturi alias facere, nesciunt officia animi corporis temporibus ex? Repellendus voluptates repellat aut temporibus hic perspiciatis vero quaerat fugit labore voluptate?
+                                Saya bergabung dengan Friendchise untuk menjalin kerja sama waralaba dengan perusahaan franchise di Indonesia karena ingin memulai bisnis tanpa harus ribet mencari waralaba di berbagai platform. Friendchise sangat memudahkan saya dalam menjalankan bisnis dan mendapatkan penghasilan tambahan. Waralaba yang ditawarkan juga sangat diminati oleh pelanggan
+                            </Typography>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+
+                        <div className="rounded-xl shadow-lg p-7 md:w-[450px] w-fit">
+                            <div className="flex items-center">
+                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
+                                <div className="ml-5">
+                                    <Typography className="font-bold">Joko Santoso</Typography>
+                                    <Typography className="text-gray-400 text-sm">Pedagang</Typography>
+                                </div>
+                            </div>
+                            <Typography className="text-sm mt-5">
+                                Saya sangat senang bisa menjalin kerja sama waralaba dengan perusahaan franchise di Indonesia bersama Friendchise. Saya bisa memulai bisnis saya dengan menawarkan produk baru yang berkualitas tinggi dan diminati oleh pelanggan. Sistem kerja sama yang disediakan oleh Friendchise sangat transparan dan mudah dipahami, serta dukungan dari tim Friendchise sangat membantu dalam mengembangkan bisnis saya
                             </Typography>
                         </div>
                     </SwiperSlide>
