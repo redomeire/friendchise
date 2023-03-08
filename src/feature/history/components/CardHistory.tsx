@@ -42,9 +42,12 @@ const CardHistory = ({ outlet_name, company_name, created_at, status, img_url, t
                     />
                 </div>
                 <div className="relative">
-                    <Button onClick={() => { setVisible(true) }}>
-                        <BsThreeDots size={25} />
-                    </Button>
+                    {
+                        status !== "gagal" &&
+                        <Button onClick={() => { setVisible(true) }}>
+                            <BsThreeDots size={25} />
+                        </Button>
+                    }
                     <AnimatePresence>
                         {
                             visible &&
