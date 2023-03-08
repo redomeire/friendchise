@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="md:w-[40%]">
                 <img src={Logo} className="w-[60px]" />
                 <Typography className="text-lg my-5 font-semibold">friendchise indonesia</Typography>
-                <Typography className="font-normal text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, doloribus ut aspernatur in placeat officiis a voluptatibus nemo illum ipsum praesentium incidunt vitae sint nobis! Provident, sed aut. Eveniet, tenetur.</Typography>
+                <Typography className="font-normal text-sm">Friendchise merupakan portal yang bertujuan untuk membantu para calon penerima waralaba mendapatkan informasi mengenai bisnis waralaba yang diinginkan sebelum memutuskan untuk memulai bisnis.</Typography>
                 <div className="flex items-center mt-5">
                     <Button className="mr-5 bg-white text-primary">
                         <FaInstagram size={25} />

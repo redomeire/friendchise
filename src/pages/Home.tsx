@@ -57,28 +57,28 @@ const Home = () => {
                     <div className="cursor-pointer m-3 rounded-xl p-5 min-w-[300px] lg:w-[300px] sm:w-full w-[300px] min-h-[300px] flex flex-col items-center hover:shadow-xl transition duration-200 bg-[#3EC87E]">
                         <img src={Home1} className="h-[150px] md:mb-0 mb-10 bg-cover bg-center rounded-xl" />
                         <Typography className="text-[15px] capitalize font-semibold my-4 text-center">
-                            berbagai pilihan waralaba terbaik di seluruh indonesia
+                            Berbagai pilihan waralaba terbaik di seluruh indonesia
                         </Typography>
                         <Typography className="text-sm text-center">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam quisquam quasi iure harum repudiandae. Incidunt!
+                            Temukan berbagai waralaba potensial yang telah melalui proses kurasi secara ketat
                         </Typography>
                     </div>
                     <div className="cursor-pointer m-3 rounded-xl p-5 hover:shadow-xl transition duration-200 min-w-[300px] lg:w-[300px] sm:w-full w-[300px] min-h-[300px] flex flex-col items-center bg-[#3EC87E]">
                         <img src={Home2} className="h-[150px] md:mb-0 mb-10 bg-cover bg-center rounded-xl" />
                         <Typography className="text-[15px] capitalize font-semibold my-4 text-center">
-                            berbagai pilihan waralaba terbaik di seluruh indonesia
+                            Proses Klaim Waralaba yang Mudah dan Cepat
                         </Typography>
                         <Typography className="text-sm text-center">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam quisquam quasi iure harum repudiandae. Incidunt!
+                            Sesuaikan modal dan dapatkan aset bisnis waralaba Anda
                         </Typography>
                     </div>
                     <div className="cursor-pointer m-3 rounded-xl p-5 hover:shadow-xl transition duration-200 min-w-[300px] lg:w-[300px] sm:w-full w-[300px] min-h-[300px] flex flex-col items-center bg-[#3EC87E]">
                         <img src={Home3} className="h-[150px] md:mb-0 mb-10 bg-cover bg-center rounded-xl" />
                         <Typography className="text-[15px] capitalize font-semibold my-4 text-center">
-                            berbagai pilihan waralaba terbaik di seluruh indonesia
+                            Diskusi Langsung kepada Perusahaan yang Anda Minati
                         </Typography>
                         <Typography className="text-sm text-center">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam quisquam quasi iure harum repudiandae. Incidunt!
+                            Temukan berbagai waralaba potensial yang telah melalui proses kurasi secara ketat
                         </Typography>
                     </div>
                 </div>
