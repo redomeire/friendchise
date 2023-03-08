@@ -48,7 +48,7 @@ const CardFranchise = ({ franchise }: { franchise: Franchise }) => {
             <div onClick={() => { navigate(`/waralaba/${franchise.id}`) }} className="bg-cover bg-center min-h-[150px] w-full rounded-xl hover:opacity-80 transition duration-200" style={{ backgroundImage: `url(${franchise.image_thumbnail})` }} />
             <div className="flex items-start mt-3 justify-between">
                 <div>
-                    <Typography onClick={() => { navigate('/waralaba/1') }} thickness="bold" className="text-lg hover:underline">
+                    <Typography onClick={() => { navigate(`/waralaba/${franchise.id}`) }} thickness="bold" className="text-lg hover:underline">
                         {franchise.outlet_name}
                     </Typography>
                     <Typography thickness="bold" className="text-md text-gray-600">
