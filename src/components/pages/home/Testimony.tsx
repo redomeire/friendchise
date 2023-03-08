@@ -48,7 +48,7 @@ const Testimony = () => {
                     <SwiperSlide>
                         <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit">
                             <div className="flex items-center">
-                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
+                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')]`} />
                                 <div className="ml-5">
                                     <Typography className="font-bold">Tuti Setiawati</Typography>
                                     <Typography className="text-gray-400 text-sm">Ibu Rumah Tangga</Typography>
@@ -78,7 +78,7 @@ const Testimony = () => {
 
                         <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit">
                             <div className="flex items-center">
-                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
+                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')]`} />
                                 <div className="ml-5">
                                     <Typography className="font-bold">Redomeire</Typography>
                                     <Typography className="text-gray-400 text-sm">Mahasiswa</Typography>
@@ -93,7 +93,7 @@ const Testimony = () => {
 
                         <div className="rounded-xl shadow-lg p-7 md:w-[450px] w-fit">
                             <div className="flex items-center">
-                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
+                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1617791636474-cad64fefa7f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=454&q=80')]`} />
                                 <div className="ml-5">
                                     <Typography className="font-bold">Naufal Ammar Rauf</Typography>
                                     <Typography className="text-gray-400 text-sm">Freelancer</Typography>
@@ -108,7 +108,7 @@ const Testimony = () => {
 
                         <div className="rounded-xl shadow-lg p-7 md:w-[450px] w-fit">
                             <div className="flex items-center">
-                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
+                                <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80')]`} />
                                 <div className="ml-5">
                                     <Typography className="font-bold">Joko Santoso</Typography>
                                     <Typography className="text-gray-400 text-sm">Pedagang</Typography>
