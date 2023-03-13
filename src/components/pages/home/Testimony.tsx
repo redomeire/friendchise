@@ -7,6 +7,7 @@ import { Navigation } from "swiper";
 
 import 'swiper/css';
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import "@/components/styles/swiper.css";
 // import "swiper/css/navigation";
 
 const Testimony = () => {
@@ -46,7 +47,7 @@ const Testimony = () => {
                     className="p-10 mySwiper"
                 >
                     <SwiperSlide>
-                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit">
+                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit !h-full">
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')]`} />
                                 <div className="ml-5">
@@ -61,7 +62,7 @@ const Testimony = () => {
                     </SwiperSlide>
                     <SwiperSlide>
 
-                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit">
+                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit !h-full">
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
                                 <div className="ml-5">
