@@ -10,6 +10,10 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import "@/components/styles/swiper.css";
 // import "swiper/css/navigation";
 
+// images
+import DaunKiri from "@/assets/parallax/daun kiri.png";
+import DaunKanan from "@/assets/parallax/daun kanan.png";
+
 const Testimony = () => {
     const sliderRef = React.useRef<any>();
 
@@ -24,7 +28,7 @@ const Testimony = () => {
     }, []);
 
     return (
-        <div className="md:px-40 px-10">
+        <div className="md:px-40 px-10 relative">
             <div className="flex items-center justify-between mt-20">
                 <Typography className="font-semibold text-3xl">
                     kata mereka
@@ -123,7 +127,7 @@ const Testimony = () => {
                 </Swiper>
             </div>
             <div className="w-full mt-8">
-                <div className="items-center flex justify-center mb-10">
+                <div className="items-center flex justify-center pb-20">
                     <Button className="border-primary border-[2px] text-primary rounded-full" onClick={handlePrev}>
                         <BsChevronLeft size={25} />
                     </Button>
@@ -132,6 +136,8 @@ const Testimony = () => {
                     </Button>
                 </div>
             </div>
+            <img src={DaunKiri} className="absolute left-0 -bottom-1 md:w-[20%] w-[30%]"/>
+            <img src={DaunKanan} className="absolute right-0 -bottom-1 md:w-[30%] w-[30%]"/>
         </div>
     );
 }
