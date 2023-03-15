@@ -135,8 +135,8 @@ const Testimony = () => {
                     </Button>
                 </div>
             </div>
-            <img src={DaunKiri} className="absolute left-0 -bottom-1 md:w-[20%] w-[30%]"/>
-            <img src={DaunKanan} className="absolute right-0 -bottom-1 md:w-[30%] w-[30%]"/>
+            <img src={DaunKiri} className="absolute left-0 -bottom-1 md:w-[15%] w-[30%]"/>
+            <img src={DaunKanan} className="absolute right-0 -bottom-1 md:w-[20%] w-[30%]"/>
         </div>
     );
 }
