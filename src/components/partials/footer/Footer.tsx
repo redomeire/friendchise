@@ -6,7 +6,7 @@ import { TfiFacebook } from "react-icons/tfi";
 
 const Footer = () => {
     return (
-        <footer className="bg-primary md:py-10 py-5 md:px-20 px-5 text-white flex items-center justify-between md:flex-row flex-col">
+        <footer className={`bg-primary md:py-10 py-5 md:px-20 px-5 text-white flex items-center justify-between md:flex-row flex-col ${window.location.pathname !== '/' ? 'mt-32' : ''}`}>
             <div className="md:w-[40%]">
                 <img src={Logo} className="w-[60px]" />
                 <Typography className="text-lg my-5 font-semibold">friendchise indonesia</Typography>

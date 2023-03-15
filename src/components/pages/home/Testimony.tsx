@@ -7,7 +7,12 @@ import { Navigation } from "swiper";
 
 import 'swiper/css';
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import "@/components/styles/swiper.css";
 // import "swiper/css/navigation";
+
+// images
+import DaunKiri from "@/assets/parallax/daun kiri.png";
+import DaunKanan from "@/assets/parallax/daun kanan.png";
 
 const Testimony = () => {
     const sliderRef = React.useRef<any>();
@@ -23,12 +28,11 @@ const Testimony = () => {
     }, []);
 
     return (
-        <div className="md:px-40 px-10">
-            <div className="flex items-center justify-between mt-20">
+        <div className="md:px-40 px-10 relative bg-white pt-20">
+            <div className="flex items-center justify-between">
                 <Typography className="font-semibold text-3xl">
                     kata mereka
                 </Typography>
-
             </div>
             <div className="mt-10 flex justify-between items-start">
                 <Swiper
@@ -46,7 +50,7 @@ const Testimony = () => {
                     className="p-10 mySwiper"
                 >
                     <SwiperSlide>
-                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit">
+                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit !h-full">
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80')]`} />
                                 <div className="ml-5">
@@ -61,7 +65,7 @@ const Testimony = () => {
                     </SwiperSlide>
                     <SwiperSlide>
 
-                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit">
+                        <div className="rounded-xl p-7 md:w-[450px] shadow-lg w-fit !h-full">
                             <div className="flex items-center">
                                 <div className={`rounded-full bg-cover bg-center bg-gray-400 w-[60px] h-[60px] bg-[url('https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80')]`} />
                                 <div className="ml-5">
@@ -122,7 +126,7 @@ const Testimony = () => {
                 </Swiper>
             </div>
             <div className="w-full mt-8">
-                <div className="items-center flex justify-center mb-10">
+                <div className="items-center flex justify-center pb-20">
                     <Button className="border-primary border-[2px] text-primary rounded-full" onClick={handlePrev}>
                         <BsChevronLeft size={25} />
                     </Button>
@@ -131,6 +135,8 @@ const Testimony = () => {
                     </Button>
                 </div>
             </div>
+            <img src={DaunKiri} className="absolute left-0 -bottom-1 md:w-[15%] w-[30%]"/>
+            <img src={DaunKanan} className="absolute right-0 -bottom-1 md:w-[20%] w-[30%]"/>
         </div>
     );
 }
