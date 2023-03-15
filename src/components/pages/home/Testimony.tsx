@@ -28,12 +28,11 @@ const Testimony = () => {
     }, []);
 
     return (
-        <div className="md:px-40 px-10 relative">
-            <div className="flex items-center justify-between mt-20">
+        <div className="md:px-40 px-10 relative bg-white pt-20">
+            <div className="flex items-center justify-between">
                 <Typography className="font-semibold text-3xl">
                     kata mereka
                 </Typography>
-
             </div>
             <div className="mt-10 flex justify-between items-start">
                 <Swiper

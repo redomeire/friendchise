@@ -9,7 +9,7 @@ const AppLayout = ({ children, style }: { children: React.ReactNode, style?: obj
     return (
         <div>
             <Navbar />
-            <div className={`${franchiseId ? 'pt-20' : 'pt-32'} pb-32 min-h-screen`} style={style}>
+            <div className={`${franchiseId ? 'pt-20' : 'pt-32'} min-h-screen`} style={style}>
                 {children}
             </div>
             {
